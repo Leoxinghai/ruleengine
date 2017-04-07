@@ -1,0 +1,34 @@
+/AppVersionInfo.java/1.1/Thu Jan 20 18:36:26 2005//
+/BTSTestClient.java/1.1/Tue Sep 13 06:24:48 2005//
+/ByteQueueWriter.java/1.1/Tue Feb  7 01:33:22 2006//
+/CCIIBatchTestClientBase.java/1.1/Fri Sep 30 04:20:56 2005//
+/CCIILogException.java/1.1/Thu Dec 23 01:03:58 2004//
+/CCIIScanClientInteractiveTest.java/1.1/Wed Sep 29 10:15:12 2004//
+/ConsDwnldTestClient.java/1.1/Tue Sep 13 06:24:48 2005//
+/CosmosMq2Log.java/1.1/Tue Apr 20 00:18:18 2004//
+/EbcdicToAscii.java/1.1/Tue Feb  7 01:33:22 2006//
+/FxTime.java/1.1/Tue Apr 20 00:18:20 2004//
+/GetAPACLookupBean.java/1.1/Mon Jun 26 07:26:20 2006//
+/GetCCIILookupBean.java/1.1/Tue Apr 20 00:18:20 2004//
+/GetRemoteEjbBase.java/1.1/Tue Apr 20 00:18:20 2004//
+/ImportTestClient.java/1.1/Tue Sep 13 06:24:48 2005//
+/Java2uvsdk.java/1.1/Mon Jun 26 07:26:20 2006//
+/Java2uvsdkException.java/1.1/Thu Dec 23 01:03:58 2004//
+/Java2uvsdkFactory.java/1.1/Wed Mar 22 07:37:09 2006//
+/Java2uvsdkInterface.java/1.1/Tue Jan 18 08:21:22 2005//
+/Java2uvsdkTest.java/1.1/Thu Dec 23 01:03:58 2004//
+/LocationList.java/1.1/Tue Apr 20 00:18:20 2004//
+/MQQueue.java/1.1/Mon Jun 26 07:26:20 2006//
+/MessageFormat.java/1.1/Tue Apr 20 00:18:20 2004//
+/ModCheck.java/1.1/Mon Jun 26 07:26:20 2006//
+/Notify.java/1.1/Mon Jun 26 07:26:20 2006//
+/NotifyMessage.java/1.1/Mon Jun 26 07:26:20 2006//
+/Print7512Form.java/1.1/Mon Oct 25 04:29:34 2004//
+/PrintHandler.java/1.1/Fri Sep 10 23:02:22 2004//
+/QueueWriter.java/1.1/Tue Apr 20 00:18:20 2004//
+/RuleProcTestClient.java/1.1/Tue Apr 20 00:18:20 2004//
+/SimpleNotify.java/1.1/Thu Oct 27 03:00:25 2005//
+/SortDate.java/1.1/Wed Sep 29 10:13:56 2004//
+/UnrollCons.java/1.1/Tue Jan 25 07:47:30 2005//
+D/remoteuvsdk////
+D/sip////

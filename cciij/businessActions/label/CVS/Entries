@@ -1,0 +1,25 @@
+/AXIS540BiDirectionalPrintServer.java/1.1/Mon Jun 26 07:26:20 2006//
+/AXIS540PrintServer.java/1.1/Mon Jun 26 07:26:20 2006//
+/FileBasedLabelDefinition.java/1.1/Mon Jun 26 07:26:20 2006//
+/LPDFastPrintServer.java/1.1/Mon Jun 26 07:26:20 2006//
+/LPDPrintServer.java/1.1/Mon Jun 26 07:26:20 2006//
+/LPExecPrintServer.java/1.1/Mon Jun 26 07:26:20 2006//
+/LabelBase.java/1.1/Mon Jun 26 07:26:20 2006//
+/LabelComponent.java/1.1/Thu Oct 27 03:00:23 2005//
+/LabelComponentBase.java/1.1/Mon Jun 26 07:26:20 2006//
+/LabelDefinitionBase.java/1.1/Mon Jun 26 07:26:20 2006//
+/LabelDefinitionInterface.java/1.1/Thu Oct 27 03:00:23 2005//
+/LabelDefinitionMux.java/1.1/Thu Oct 27 03:00:23 2005//
+/LabelFormatTypeUtilInterface.java/1.1/Thu Oct 27 03:00:23 2005//
+/LabelInterface.java/1.1/Thu Oct 27 03:00:23 2005//
+/LabelPrintException.java/1.1/Mon Jun 26 07:26:20 2006//
+/LabelPrintMessageException.java/1.1/Mon Jun 26 07:26:20 2006//
+/LabelTransmition.java/1.1/Thu Oct 27 03:00:23 2005//
+/PrintServer.java/1.1/Thu Oct 27 03:00:23 2005//
+/PrintServerBase.java/1.1/Thu Oct 27 03:00:23 2005//
+/RunTimeLabelDefinitionBase.java/1.2/Tue Sep  5 10:09:25 2006//
+/ScannerPrintServer.java/1.1/Mon Jun 26 07:26:20 2006//
+/StdOutPrintServer.java/1.1/Mon Jun 26 07:26:20 2006//
+D/intermec////
+D/monarch////
+D/zebra////
