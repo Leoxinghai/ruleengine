@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title:        RoleClasses
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author Kathleen Krucoff
  * @version 1.0
@@ -349,7 +349,7 @@ public class ClearanceActivity implements Serializable
          s += "agencyLocationCode           : " + m_agencyLocationCode+ "\n";
          s += "activityLocationCode         : " + m_activityLocationCode+ "\n";
 
- 
+
       return s;
   }
 }

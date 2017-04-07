@@ -5,7 +5,7 @@ package cciij.businessActions;
  * Description:  Abstract class that extends BusinessActionBase.  Used for the
  *               validation and update of the route_leg_status_cd field in the Route_Leg
  *               database table.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Tom Knobeloch
  * @version      1.0
@@ -14,12 +14,12 @@ package cciij.businessActions;
  *  04/10/02    Tom Knobeloch  Initial version.
  *  06/11/03    Tom Knobeloch  Changed RouteLegStatusChange to RouteLegInfo
  *  08/21/03    Joey Cline     Renamed method isValidRouteLegChange (from isValidRouteStatusChange)
- *                             Renamed class from RouteLegStatusChangeBase to reflect that it is    
+ *                             Renamed class from RouteLegStatusChangeBase to reflect that it is
  *                             now the parent class for status and sort date changes.
- *  09/18/03    Tom Knobeloch  Added statements to add the RouteNumber and RouteLegOidNumber to the 
- *                             scan object.               
+ *  09/18/03    Tom Knobeloch  Added statements to add the RouteNumber and RouteLegOidNumber to the
+ *                             scan object.
  */
- 
+
 import cciij.cciidatabase.*;
 import cciij.cciidata.*;
 import cciij.util.*;
@@ -37,7 +37,7 @@ public abstract class RouteLegChangeBase extends BusinessActionBase
     public RouteLegChangeBase() throws Exception
     {
     }
-     
+
 /**
  * Method:       getRouteLegFromDB(RouteLeg newRLeg, DatabaseBean dbConnection)
  * Description:  Using an passed DatabaseBean object (dbConnection) and key fields in
@@ -54,13 +54,13 @@ public abstract class RouteLegChangeBase extends BusinessActionBase
                                               throws Exception
     {
         RouteLeg RLeg;
-        
+
         RLeg = dbConnection.fetchRouteLeg(newRLeg.getRouteNumber(),
                                           newRLeg.getRouteDate(),
                                           newRLeg.getRouteLegNumber() );
         return RLeg;
     }
-    
+
 /**
  * Method:       setDbFields(RouteLeg dbRLeg, RouteLeg changeRLeg)
  * Description:  Copies the RouteLegInfo from changeRLeg to dbRLeg.
@@ -75,7 +75,7 @@ public abstract class RouteLegChangeBase extends BusinessActionBase
     {
         dbRLeg.setRouteLegStatusCd(changeRLeg.getRouteLegStatusCd());
     }
-    
+
 /**
  * Method:       writeRouteLegToDB(RouteLeg newRLeg, DatabaseBean dbConnection)
  * Description:  Using an passed DatabaseBean object (dbConnection) updates the newRLeg
@@ -92,7 +92,7 @@ public abstract class RouteLegChangeBase extends BusinessActionBase
     {
         dbConnection.updateRouteLeg(newRLeg);
     }
-    
+
 /**
  * Method:       isValidRouteLegChange(RouteLeg databaseRLeg, RouteLeg newRLeg)
  * Description:  Abstract method to specify the method signature to be implemented by
@@ -105,7 +105,7 @@ public abstract class RouteLegChangeBase extends BusinessActionBase
  * @return       int - 0 for valid or an error number
  */
     protected abstract int isValidRouteLegChange(RouteLeg databaseRLeg, RouteLeg newRLeg);
-    
+
 /**
  * Method:       addClearanceActivity(CCIIState state, RouteLeg dbRLeg)
  * Description:  Abstract method to specify the method signature to be implemented by
@@ -119,7 +119,7 @@ public abstract class RouteLegChangeBase extends BusinessActionBase
  * @return       void
  */
     protected abstract void addClearanceActivity(CCIIState state, RouteLeg dbRLeg);
-    
+
 /**
  * Method:       doIt(CCIIState state, DatabaseBean dbConnection)
  * Description:  Method invoked by RuleProcessor to retrieve a RouteLeg from the
@@ -138,7 +138,7 @@ public abstract class RouteLegChangeBase extends BusinessActionBase
         int valid;
         RouteLeg dbRLeg;
         RouteLeg changeRLeg;
-        
+
 	state.setRouteWasClosed(false);
 
         changeRLeg = state.getRouteLegInfo();
@@ -153,10 +153,10 @@ public abstract class RouteLegChangeBase extends BusinessActionBase
                                                            "Failure during fetch of RouteLeg");
             throw cciiEx;
         }
-        
+
         state.getScan().setRouteNumber(dbRLeg.getRouteNumber());
         state.getScan().setRouteLegOid(dbRLeg.getRouteLegOidNumber());
-        
+
         valid = isValidRouteLegChange(dbRLeg, changeRLeg);
         if (valid == 0)
         {
@@ -182,7 +182,7 @@ public abstract class RouteLegChangeBase extends BusinessActionBase
         else
         {
             state.getScan().setErrorNumber(valid);
-        }    
+        }
         return state;
     }
-}    
+}

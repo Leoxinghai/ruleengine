@@ -22,7 +22,7 @@ import bea.jolt.*;
  *               of a BusinessActionBase object, the initialization method will
  *               check for the necessary configuration data contained in either
  *               the configuration file ccii.cfg, or the site parameter table.<br>
- * Copyright:    Copyright (c) 2001<br>
+ * Copyright:    Copyright (c) 2007<br>
  * Company:      FedEx<br>
  * Exceptions:<br>
  * <UL>
@@ -57,7 +57,7 @@ import bea.jolt.*;
  *                turning on the trace level for just a single business action
  *                by using the business action name, or for business actions that
  *                take a constructor, use the string "actionName" that is passed to
- *                the constructor.  The Notify object intialization was changed 
+ *                the constructor.  The Notify object intialization was changed
  *                in two spots:
  *               <UL>
  *                  <LI>In the default constructor, by trimming
@@ -582,7 +582,7 @@ public abstract class BusinessActionBase extends com.fedex.css.ruleprocessor.Bus
         boolean armResult = false;
 
         //System.out.println(this.getClass().getName() + ".actionEntry(state)");
-        
+
         if(inState instanceof CCIIState)
         {
             //      System.out.println("actionEntry called with correct state object");
@@ -593,7 +593,7 @@ public abstract class BusinessActionBase extends com.fedex.css.ruleprocessor.Bus
         }
 
         CCIIState state = (CCIIState)inState;
-       
+
 	try
 	{
           if(m_db == null)
@@ -607,7 +607,7 @@ public abstract class BusinessActionBase extends com.fedex.css.ruleprocessor.Bus
             m_db.setConnection(getDBConnection());
           }
 	}
-        catch (Exception ex ) 
+        catch (Exception ex )
 	{
 	    System.out.println ( "actionEntry(): Failed to obtain a DB connection from pool... Setting the abort flag." );
             ex.printStackTrace(System.out);
@@ -628,7 +628,7 @@ public abstract class BusinessActionBase extends com.fedex.css.ruleprocessor.Bus
         m_temp = state;
         String locationCd = state.getScan().getLocationCode();
         //      System.out.println("actionEntry() with location of:  " + locationCd);
-        
+
         if (!locationCd.equals(m_locationCd))
         {
             m_config.setLocationCode(locationCd);
@@ -648,11 +648,11 @@ public abstract class BusinessActionBase extends com.fedex.css.ruleprocessor.Bus
                 state.getScan().setErrorNumber(Messages.EM_CONFIG_FILE_ERROR);
             }
         }
-        
+
         try
         {
             armStart ();
-            
+
             // System.out.println(this.getClass().getName() + ".doIt(" + state.getScan().getLocationCode() + ");");
             m_temp = doIt(state,m_db);
 
@@ -735,7 +735,7 @@ public abstract class BusinessActionBase extends com.fedex.css.ruleprocessor.Bus
         }
 
         m_db.setConnection(null);
-        
+
         armEnd ( armResult );
         return m_temp;
 
@@ -1002,7 +1002,7 @@ public abstract class BusinessActionBase extends com.fedex.css.ruleprocessor.Bus
      * Description:  Apply the Exception Activity Codes before we let ruleprocessor
      *               rollback the transaction.
      *
-     * @author       Mike Roderick
+     * @author      Liu Xinghai
      * @version      1.0
      *
      * @param        state - CCIIState with the exception codes

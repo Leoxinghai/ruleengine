@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:        BackgroundQueue
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Robert Fisher
  * @version 1.0
@@ -76,14 +76,14 @@ public class BackgroundQueue extends BusinessActionBase {
 
     public CCIIState doIt(CCIIState state, DatabaseBean db) throws Exception {
        String error = state.getScan().getEntryNumber();
-//       if(!state.getScanTypeCode().equals("CONS") && !state.getScanTypeCode().equals("DCON")) 
+//       if(!state.getScanTypeCode().equals("CONS") && !state.getScanTypeCode().equals("DCON"))
 	       if(state.getScan().getAirbillFormType().equals("0503") || state.getScan().getAirbillFormType().equals("0501")) {
 	       		CCIIState newstate = (CCIIState)state.clone();
 	       		BKKCosmosBatchUpload batchUpload = new BKKCosmosBatchUpload(newstate,db);
 	       		batchUpload.start();
 	       		return state;
 	       }
-       
+
        return sendBackgroundQueue(state,db,false);
     }
 
@@ -205,11 +205,11 @@ public class BackgroundQueue extends BusinessActionBase {
 
           //hardcode by xinghai
  //         m_ruleSet = "BKK_BTCOSMOS";
-          if(m_ruleSet == null) { 
+          if(m_ruleSet == null) {
 	            m_ruleSet = m_config.getValue(state.getScan().getOutViewName().toUpperCase()
 	                    + "VIEW_POST_RULESET");
           }
-          
+
           if ( m_ruleSet == null ) {
               state.getScan().setErrorNumber(Messages.EM_CONFIG_FILE_ERROR);
               Exception ex = new Exception("Unable to read ruleset name from config file");

@@ -8,9 +8,9 @@ import java.sql.Timestamp;
 
 /**
  * Title:       SendArrivalNoticeBase.java
- * Description: Base class that will be used for sending notification to 
- *              NACCS for APAC. 
- * Copyright:   Copyright (c) 2001
+ * Description: Base class that will be used for sending notification to
+ *              NACCS for APAC.
+ * Copyright:   Copyright (c) 2007
  * Company:
  * @author      Julie McCarthy
  * @version 1.0
@@ -19,21 +19,21 @@ import java.sql.Timestamp;
  *   11/14/2003  Joey Cline    Modified the MQQueue object to be a property
  *                             instead of being a local variable, so that
  *                             the connection manager is not created/destroyed
- *                             with each call.                                 
- *                             Migrated property initialization into the       
- *                             initialize method, since creation of the 
+ *                             with each call.
+ *                             Migrated property initialization into the
+ *                             initialize method, since creation of the
  *                             MQQueue object is dependent on it.
  *
  */
 
-public abstract class SendArrivalNoticeBase extends BusinessActionBase 
+public abstract class SendArrivalNoticeBase extends BusinessActionBase
 {
     private  String m_systemLevel = "";
     protected  String m_cciiQueueManagerName = "";
     protected  String m_cciiQueueName = "";
     protected  MQQueue m_mqQueue = null;
-  
-    protected String m_uploadActive = ""; 
+
+    protected String m_uploadActive = "";
 
     public SendArrivalNoticeBase() throws Exception
     {
@@ -93,5 +93,5 @@ public abstract class SendArrivalNoticeBase extends BusinessActionBase
     public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception
     {
         return state;
-    } 
+    }
 }

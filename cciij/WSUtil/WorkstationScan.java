@@ -5,11 +5,11 @@ package cciij.WSUtil;
  * Description:  A project to create all the server side servlets and JSP that will be required to implement the CCII interface on a browser on the clients machine.
  * Copyright:    Copyright (c) 2002
  * Company:      FedEx Services
- * @author Steven Hurd
+ * @author Liu Xinghai
  * @version 1.0
  * Modification History:
  * 02/03/2004   Tom Knobeloch    Added code for invoking Inventory scans.
- * 12/22/2004   Mike Roderick    Added logic to get the uvsdk from the factory, and deal with the exceptions
+ * 12/22/2004  Liu Xinghai    Added logic to get the uvsdk from the factory, and deal with the exceptions
  */
 import cciij.cciidata.RPBScan;
 import cciij.businessActions.Messages;

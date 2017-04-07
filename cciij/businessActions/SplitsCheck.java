@@ -2,16 +2,16 @@ package cciij.businessActions;
 
 /**
  * Title:        Splits Check
- * Description:  From the information contained in the Scan Record 
+ * Description:  From the information contained in the Scan Record
  *               in conjunction with Piece and Shipment information
  *               determine if this package belongs to the specified
  *               split.   Split identified in the Scan Record.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Gary Rockwood
  * @version 1.0
  *
- * @throws       
+ * @throws
  *
  * @return       state - State object.
  *
@@ -45,7 +45,7 @@ public class SplitsCheck extends BusinessActionBase
     public static final int SPLIT_TABLE_ID = 1;
     public static final String SPLIT_VERSION_NBR = "0403";
 
-    // Object definitions 
+    // Object definitions
     protected Java2uvsdkInterface uvsdk = null;
     protected Split dbSplit = null;
     protected ModCheck modCheck = null;
@@ -55,14 +55,14 @@ public class SplitsCheck extends BusinessActionBase
     protected ContractBroker contractBroker = null;
     protected Party party = null;
 
-    // System objects 
+    // System objects
     protected SimpleDateFormat ursaFormat = new SimpleDateFormat("yyyyMMdd");
     protected SimpleDateFormat currTime = new SimpleDateFormat("HHmm");
     protected SimpleDateFormat dayOfWeek = new SimpleDateFormat("EEE");
     protected Date s_convertDt = null;
 
     // Variables
-    protected int UrsaEditLoaded; 
+    protected int UrsaEditLoaded;
     public    String s_splitLoaded;
     protected String s_splitDirectory = "";
     protected String s_locationCd = "";
@@ -96,9 +96,9 @@ public class SplitsCheck extends BusinessActionBase
     //     i_splitsStatus == 4       No Broker Record
     //     i_splitsStatus == 5       No Party Record
     //     i_splitsStatus == 6       Unable to destination Country, Postal or Location
-    //     i_splitsStatus == 7       Invalid ASTRA label 
+    //     i_splitsStatus == 7       Invalid ASTRA label
     private int i_splitsStatus = 0;  // Default set to package allowed
- 
+
     private static final String m_whatVersion = "@(#) $RCSfile: SplitsCheck.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
 
@@ -124,7 +124,7 @@ public class SplitsCheck extends BusinessActionBase
     {
         int     i_loadStatus = 0;
         boolean mb_splitStatus = false;
-    
+
         if ((s_splitLoaded != null) &&
             (s_splitLoaded.length() > 0) &&
             (s_splitLoaded.equals("SPLIT_LOADED") == true ))
@@ -170,10 +170,10 @@ public class SplitsCheck extends BusinessActionBase
                 if ((s_splitDirectory != null) &&
                     (s_splitDirectory.length() > 0))
                 {
-                    // Create the Split file to load as a combination of 
+                    // Create the Split file to load as a combination of
                     // COSMOS split file plus local splits
                     if (dbSplit != null)
-                    { 
+                    {
                         synchronized(dbSplit)
                         {
                             mb_splitStatus = BuildSplitFile(state, dbConnection);
@@ -206,7 +206,7 @@ public class SplitsCheck extends BusinessActionBase
                     else
                     {
                         // Problem with building the SPLIT_UVSDK file
-                        System.out.println("SplitsCheck, Problem with BuildSplitFile"); 
+                        System.out.println("SplitsCheck, Problem with BuildSplitFile");
                         return false;
                     }
                 }
@@ -309,10 +309,10 @@ public class SplitsCheck extends BusinessActionBase
             for (int i=0; i<i_recordCount; i++)
             {
                 int i_startPos = (i * SPLIT_RECORD_SIZE) + SPLIT_HEADER_SIZE;
-              
+
                 // Build the entries for the Split Database
                 dbSplit.setLocationCd(s_locationCd);
-                
+
                 // Check that we do not exceed the Splits Possible in the uvsdk
                 if (m_buffer[i_startPos] <= SPLIT_MAX)
                 {
@@ -321,7 +321,7 @@ public class SplitsCheck extends BusinessActionBase
                     {
                         splitBuffer[j] = m_buffer[j+i_startPos];
                     }
-                    dbSplit.setSplitValue(splitBuffer); 
+                    dbSplit.setSplitValue(splitBuffer);
                     dbSplit.setSplitDesc("Split received from COSMOS");
                     dbSplit.setSplitVersionNbr(SPLIT_VERSION_NBR);
                     dbSplit.setRecordActiveFlg("Y");
@@ -552,7 +552,7 @@ public class SplitsCheck extends BusinessActionBase
     {
         traceLog("SplitsCheck", state);
 
-        // Initialize all variables    
+        // Initialize all variables
         i_ipdService = 0;
         i_bsoPresent = 0;
         i_satDelivery = 0;
@@ -584,7 +584,7 @@ public class SplitsCheck extends BusinessActionBase
         }
         else
         {
-            // Find the specified Split and read 
+            // Find the specified Split and read
             int i_split = Integer.parseInt(state.getScan().getSplitNumber());
 //            System.out.println("Split Position " + i_split);
 
@@ -595,11 +595,11 @@ public class SplitsCheck extends BusinessActionBase
             // scanned barcode, we can use the ASTRA data
             if ((state.getScan().getAirbillNumber().equals(state.getAbScanned())) &&
                 (state.getScan().getAirbillEntry().equals("3")) &&
-                (state.getScan().getAirbillEntry().equals("2")))      // this is impossible, do not use ASTRA 
+                (state.getScan().getAirbillEntry().equals("2")))      // this is impossible, do not use ASTRA
             {
                 // This was an ASTRA label scanned
                 // Re-build the ASTRA label
-                s_astraLabel = state.getScan().getAstraData() + 
+                s_astraLabel = state.getScan().getAstraData() +
                                state.getScan().getAirbillNumber() +
                                state.getScan().getAirbillFormType().substring(1,4);
 
@@ -618,13 +618,13 @@ public class SplitsCheck extends BusinessActionBase
                     uvsdk.UEInitialize();
 
                     // Check the airbill that it is valid and build context info
-                    String ABNumber = uvsdk.CheckAirbill(s_astraLabel);               
+                    String ABNumber = uvsdk.CheckAirbill(s_astraLabel);
                     if (ABNumber.length() > 0)
                     {
-                        // Build the context 
+                        // Build the context
                         // AstraScan can only be called following CheckAirbill
                         uvsdk.AstraScan();
-                        
+
                         // Perform the Splits Check
                         PerformSplitsCheck(i_split, state);
                     }
@@ -679,7 +679,7 @@ public class SplitsCheck extends BusinessActionBase
 
                             // Set the destination country and postal info into the URSA Context
                             SetDestination(state);
- 
+
                             // Set the Service code (numeric value)
                             uvsdk.SetServiceCode(ServiceCode);
 
@@ -772,7 +772,7 @@ public class SplitsCheck extends BusinessActionBase
                 String splitText = uvsdk.GetSplitsErrorText();
 //                System.out.println("SplitsCheck, Package rejected, code " +
 //                                    splitAction + " Action Text " + splitText);
- 
+
                 // Return indicating that the package does not go into this split
                 state.getScan().setErrorNumber(Messages.EM_FAILED_SPLIT);
                 state.getScan().setReturnMessage(splitText);
@@ -1045,7 +1045,7 @@ public class SplitsCheck extends BusinessActionBase
                         i_splitsStatus = 4;
                         state.getScan().setErrorNumber(Messages.EM_BROKER_INFO_MIS);
                         i_contractBrokerProblem = 1;
-                    } 
+                    }
                 }
             }
         }
@@ -1103,7 +1103,7 @@ public class SplitsCheck extends BusinessActionBase
                         i_splitsStatus = 5;
                         state.getScan().setErrorNumber(Messages.EM_PARTY_INFO_MIS);
                         i_partyProblem = 1;
-                    } 
+                    }
                 }
 
                 // For IPD shipment that clear customs they are to be sent IP not IPD.
@@ -1271,7 +1271,7 @@ public class SplitsCheck extends BusinessActionBase
                         {
                             // Problem with Postal
                             state.getScan().setErrorNumber(Messages.EM_INVALID_POSTAL);
-                            i_splitsStatus = 6; 
+                            i_splitsStatus = 6;
                         }
                     }
                 }
@@ -1295,7 +1295,7 @@ public class SplitsCheck extends BusinessActionBase
                         i_splitsStatus = 6;
                     }
                 }
-            }  
+            }
             else
             {
                 // Set the FedEx Dest Loc Code, Postals not supported

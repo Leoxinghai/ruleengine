@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:
  * @author
  * @version 1.0
@@ -45,15 +45,15 @@ public class PostDeclaredStatus extends PostShipmentBase
 
     /**
      * modifyShipmentData
-     * @param Shipment 
+     * @param Shipment
      * @param CCIIState
     */
     public CCIIState modifyShipmentData(Shipment ship,CCIIState state) throws Exception
     {
         traceLog("PostDeclaredStatus","Beginning modifyShipmentData()");
 
- 
-        if(isNewTransaction(state.getScan().getTransactionTimestamp(), 
+
+        if(isNewTransaction(state.getScan().getTransactionTimestamp(),
 		    ship.getDeclaredTransactionSequenceTimestamp()))
         {
             if(!(ship.getDeclaredFlag().equals("Y")))
@@ -88,13 +88,13 @@ public class PostDeclaredStatus extends PostShipmentBase
              PostDeclaredStatus postDeclaredStatus = new PostDeclaredStatus();
 
              postDeclaredStatus.test();
-	 }     
+	 }
 	 catch (Exception e)
 	 {
 	    System.out.println(e);
          }
-	     
-   
+
+
     }
 
     public void test() throws Exception
@@ -107,8 +107,8 @@ public class PostDeclaredStatus extends PostShipmentBase
 
         cciiState = (CCIIState) actionEntry(cciiState);
 	System.out.println("state after execution " + cciiState);
-	
-        
+
+
         return;
     }
 

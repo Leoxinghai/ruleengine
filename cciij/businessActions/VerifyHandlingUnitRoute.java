@@ -9,7 +9,7 @@ package cciij.businessActions;
  *               A difference will cause the overage flag "ROUTE" to be set.
  *               Finally, the state object is returned to the caller.
  *
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Robert Fisher
  * @version 1.0

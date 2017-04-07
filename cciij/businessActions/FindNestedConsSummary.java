@@ -6,7 +6,7 @@ package cciij.businessActions;
  *               is not found, set the i_inputError to EM_CONS_NOT_FOUND in the CONSView.
  *               If the NestedConsSummary entry is found, return without setting any error.
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Gary Rockwood
  * @version 1.0

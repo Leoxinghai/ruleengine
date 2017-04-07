@@ -2,9 +2,9 @@ package cciij.businessActions;
 
 /**
  * Title:         NoLookupTemplateParser.java
- * Description:   Function to build return a key which the Template Parser can 
+ * Description:   Function to build return a key which the Template Parser can
  *                use for it's template lookups.
- * Copyright:     Copyright (c) 2001
+ * Copyright:     Copyright (c) 2007
  * Company:       FedEx Services
  * @author        Kathy Smathers
  * @version 1.0

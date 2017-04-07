@@ -10,7 +10,7 @@ package cciij.businessActions;
  *              - the last modified date timestamp
  *              - the last user name
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Lorraine Dominguez
  * @version 1.0
@@ -34,12 +34,12 @@ import cciij.cciidata.*;
 import cciij.util.*;
 import java.util.Date;
 
-public class PostHandlingUnitSetPlace extends PostHandlingUnitBase 
+public class PostHandlingUnitSetPlace extends PostHandlingUnitBase
 {
 
 private static final String m_whatVersion = "@(#) $RCSfile: PostHandlingUnitSetPlace.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
-public PostHandlingUnitSetPlace() throws Exception 
+public PostHandlingUnitSetPlace() throws Exception
 {
    traceLog("PostHandlingUnitSetPlace","In Constructor");
 
@@ -65,10 +65,10 @@ protected void setPlaceValues(HandlingUnit hu, CCIIState state) throws Exception
 public static void main(String args[])
 {
    try
-   { 
+   {
       PostHandlingUnitSetPlace postHandlingUnitSetPlace = new PostHandlingUnitSetPlace();
       postHandlingUnitSetPlace.test();
-   }    
+   }
    catch (Exception e)
    {
       System.out.println(e);

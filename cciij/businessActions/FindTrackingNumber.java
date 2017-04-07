@@ -18,7 +18,7 @@ package cciij.businessActions;
  *               shipment. Capture the MPS state information.
  *
  *               Finally, return the state information to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Robert Fisher
  * @version 1.0
@@ -50,8 +50,8 @@ package cciij.businessActions;
  * 03/09/3004    Gary Rockwood Added TravelStatus information
  * 10/25/2004    Joey Cline   Added call to HandlingUnit isManifested to set
  *                            the IsPieceManifested flag in the state object.
- * 11/15/2004    Joey Cline   Include original exception when there is a 
- *                            problem with the getting the handling unit 
+ * 11/15/2004    Joey Cline   Include original exception when there is a
+ *                            problem with the getting the handling unit
  *
  */
 
@@ -146,7 +146,7 @@ public class FindTrackingNumber extends BusinessActionBase {
 
     // Set the Intransit Indicator to "N" as a default, this could be changed later
     state.setIntransitFlag("N");
- 
+
     // Set a Default scan message equal to the Scan Type
 //    state.getScan().setErrorNumber(Messages.IM_DISPLAY_RTN_MSG);
 //    state.getScan().setReturnMessage(state.getScanTypeCode());
@@ -162,7 +162,7 @@ public class FindTrackingNumber extends BusinessActionBase {
 	    handlingUnit =  dbConnection.fetchHandlingUnit(state.getScan().getAirbillNumber(),m_locationList.getLocationList());
 	}
 	catch (Exception ex) {
-            
+
 	    m_notify.triggerNotify("Failed to call db.fetchHandlingUnit(" + state.getScan().getAirbillNumber()
 				   + ", " + m_locationList.getLocationList() + ")", ex);
 	    state.getScan().setErrorNumber(Messages.EM_DB_ERROR);
@@ -193,7 +193,7 @@ public class FindTrackingNumber extends BusinessActionBase {
 	    //       System.out.println("getHSWB " + state.getStac().getHAWB());
 	    //       System.out.println("UnknownFlag " + state.getScan().getHAWBUnknownFlag());
 
-	    
+
 	    if ( /*m_config.getValue(state.getScan().getInViewName().toUpperCase()
 				   + "_ALLOW_MPS_OVERAGE_PROCESSING").equals("Y")
 		 && */isOverageCRN(state)
@@ -212,7 +212,7 @@ public class FindTrackingNumber extends BusinessActionBase {
         }
 		//        assignInterceptAndAgency(state, m_overageInterceptCode, m_overageAgencyCode);
 	    }
-	    	    
+
 	    return state;
 	}
 
@@ -267,7 +267,7 @@ public class FindTrackingNumber extends BusinessActionBase {
 	state.getScan().setHandlingUnitOid( handlingUnit.getHandlingUnitOidNumber() );
 	state.getScan().setShipmentOid( handlingUnit.getShipmentOidNumber() );
 
-    // Set the Travel Status from the pieceCoreClearance table 
+    // Set the Travel Status from the pieceCoreClearance table
     state.setTravelStatus( handlingUnit.getTravelStatus() );
 
 	//  If the fetch returned a single record with the nullCoreClearance flag set, then this is a mis-sort
@@ -296,7 +296,7 @@ public class FindTrackingNumber extends BusinessActionBase {
 	traceLog("FindTrackingNumber","Piece Status Code == /" + handlingUnit.getPieceStatusCode() + "/");   // gdr
         state.getScan().setDestLocationCode(handlingUnit.getDestLocationCd() );
 	if ( handlingUnit.getOverageReasonCode().equals("M")
-	     && handlingUnit.getPieceStatusCode().equals("") ) 
+	     && handlingUnit.getPieceStatusCode().equals("") )
     {
       state.setOverageFlag("M");
       if (state.getTravelStatus().equals("D"))
@@ -349,7 +349,7 @@ public class FindTrackingNumber extends BusinessActionBase {
 	    assignInterceptAndAgency(state, m_mpsInterceptCode, m_mpsAgencyCode);
 	}
 
-    // Set the Intransit Flag       
+    // Set the Intransit Flag
     if ((shipment.getIntransitCd() == null) ||
         (shipment.getIntransitCd().length() == 0) ||
         (shipment.getIntransitCd().equals("N")))
@@ -514,8 +514,8 @@ public class FindTrackingNumber extends BusinessActionBase {
 	    System.out.println("Didnt find the HU you wanted!!");
 	}
 
-	System.out.println("Leaving main"); 
-  
+	System.out.println("Leaving main");
+
     }
 
 }

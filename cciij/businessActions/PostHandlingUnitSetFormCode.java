@@ -12,7 +12,7 @@ import java.util.Date;
  *              information from RPB consists of:
  *              - the form type code
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Lorraine Dominguez
  * @version 1.0
@@ -26,11 +26,11 @@ import java.util.Date;
  *
  * Modification History:
  */
-public class PostHandlingUnitSetFormCode extends PostHandlingUnitBase 
+public class PostHandlingUnitSetFormCode extends PostHandlingUnitBase
 {
   private static final String m_whatVersion = "@(#) $RCSfile: PostHandlingUnitSetFormCode.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
-  public PostHandlingUnitSetFormCode() throws Exception 
+  public PostHandlingUnitSetFormCode() throws Exception
   {
      traceLog("PostHandlingUnitSetFormCode","In Constructor");
   }
@@ -44,10 +44,10 @@ public class PostHandlingUnitSetFormCode extends PostHandlingUnitBase
   public static void main(String args[])
   {
      try
-     { 
+     {
         PostHandlingUnitSetFormCode postHandlingUnitSetFormCode = new PostHandlingUnitSetFormCode();
         postHandlingUnitSetFormCode.test();
-     }    
+     }
      catch (Exception e)
      {
         System.out.println(e);

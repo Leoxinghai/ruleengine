@@ -8,7 +8,7 @@ package cciij.businessActions;
  *              and has an departure scan type. If no record is found an error message
  *              (IM_NO_DEPARTURE_SCAN) is set in the scan object error message attribute.
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author
  * @version 1.0

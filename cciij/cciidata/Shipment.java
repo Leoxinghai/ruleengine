@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title: Shipment Role Class
  * Description:
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:  Fedex Services
  * @author
  * @version 1.0
@@ -77,7 +77,7 @@ public class Shipment implements Serializable {
     private String m_mawbNbr = "";
     private float m_lbsWgt = 0;
     private String m_priorNotificationNbr = "";
-     
+
 
     Timestamp m_declaredTransactionSequenceTimestamp = new Timestamp(0);
 
@@ -830,7 +830,7 @@ public class Shipment implements Serializable {
     {
         return this.m_consigneeAddress;
     }
-    
+
     public String getConsigneeCity()
     {
         return this.m_consigneeCity;
@@ -1586,7 +1586,7 @@ public class Shipment implements Serializable {
         s += "lbsWgt                       : " + m_lbsWgt + "\n";
         s += "priorNotificationNbr         : " + m_priorNotificationNbr + "\n";
         s += "entryCategorySourceCd        : " + m_entryCategorySourceCd + "\n";
-       
+
 
         return s;
     }

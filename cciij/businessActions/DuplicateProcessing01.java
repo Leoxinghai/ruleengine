@@ -10,7 +10,7 @@ package cciij.businessActions;
  *
  *
  *
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Robert Fisher
  * @version 1.0
@@ -102,11 +102,11 @@ public class DuplicateProcessing01 extends BusinessActionBase {
 //  otherwise change the ruleset name and ruleprocessor will execute
 //  the ruleset to produce the label
 
-    if ( allowUserResolution == true ) 
+    if ( allowUserResolution == true )
     {
 	state.getScan().setErrorNumber(Messages.EM_DUP_PIECE);
     }
-    else 
+    else
     {
 	String dupRuleSetName = m_config.getValue("DUPLABVIEW_RULESET");
 

@@ -13,7 +13,7 @@ package cciij.businessActions;
  *
  * Copyright:    Copyright (c) 2003
  * Company:      FedEx Services
- * @author       Mike Roderick
+ * @author      Liu Xinghai
  *               This code was initially copied from AddActivity
  * @version 1.0
  *
@@ -42,12 +42,12 @@ public class AddExceptionActivity extends BusinessActionBase {
 
     protected String m_groupName;
 
-    public AddExceptionActivity(String groupName) throws Exception 
+    public AddExceptionActivity(String groupName) throws Exception
     {
 	super(groupName);
 
 	m_groupName = groupName;
-	
+
 	traceLog("AddExceptionActivity","In Constructor(" + groupName + ")");
     }
 
@@ -56,7 +56,7 @@ public class AddExceptionActivity extends BusinessActionBase {
 	super.readSiteConfigVariables();
     }
 
-    public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception 
+    public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception
     {
 	String actCode;
 
@@ -69,7 +69,7 @@ public class AddExceptionActivity extends BusinessActionBase {
 	    throw cciiEx;
 	}
 	else
-	{   
+	{
 	    state.addExceptionActivity(actCode);
 	}
 
@@ -88,11 +88,11 @@ public class AddExceptionActivity extends BusinessActionBase {
 	try
 	{
 	    CCIIState state = new CCIIState();
-	    
+
 	    AddExceptionActivity assMst = new AddExceptionActivity("DEPnotCleared");
-	    
+
 	    assMst.doIt(state,null);
-	    
+
 	    System.out.println("Activity Vector after AddExceptionActivity:  " + state.getActivityCodes());
 	}
 	catch(Exception e)

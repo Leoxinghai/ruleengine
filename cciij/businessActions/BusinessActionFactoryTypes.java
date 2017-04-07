@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:        Business Action Factory Types
  * Description:  Business Action type constants
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      Fedex Services
  * @author       Robert Fisher
  * @version 1.0

@@ -4,13 +4,13 @@ package cciij.businessActions;
  * Title:        Set CONS Info
  * Description:  Find a  ConsSummary by CONS number. If the ConsSummary
  *               is not found, clear cons info in the current scan also
- *               set the split Number to 0.   
+ *               set the split Number to 0.
  *               If the ConsSummary entry is found, set the following fields
  *               in the CONSView:
  *                  o_consOid,  s_containerInd,  s_containerId,  s_consDestLoc,
  *                  s_destCountry, s_splitNumber from the ConsSummary record.
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Gary Rockwood
  * @version 1.0

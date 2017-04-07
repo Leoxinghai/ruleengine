@@ -5,7 +5,7 @@ package cciij.businessActions;
  * Description:  Find a Tracking Number in the Cons database table.  If the Cons entry
  *               is not found, set the i_errorNumber to EM_AB_NOT_IN_CONS.
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Gary Rockwood
  * @version 1.0
@@ -57,7 +57,7 @@ public class FindCons extends BusinessActionBase {
 
     if ( cons == null ) {
             state.getScan().setErrorNumber(Messages.EM_AB_NOT_IN_CONS);
-           
+
     } else if(cons != null && !cons.getConsFormTypeCode().equals("0503")&& !cons.getConsFormTypeCode().equals("0501")) {
         if(cons.getOidNumber() != state.getScan().getHandlingUnitOid())
             state.getScan().setErrorNumber(Messages.EM_AB_NOT_IN_CONS);

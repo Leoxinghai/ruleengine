@@ -10,7 +10,7 @@ package cciij.businessActions;
  *               the overage flag is set in the state object. The state object
  *               is then returned to the caller.
  *
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Robert Fisher
  * @version 1.0
@@ -105,16 +105,16 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
     long adjustmentFromMidnightMS = packageSortDateMS % milliSecondsPerDay;
     packageSortDateMS = packageSortDateMS - adjustmentFromMidnightMS;
     Date packageSortDate = new Date(packageSortDateMS);
-    
+
     long currentSystemSortDateMS = sortDate.currentSortDate(state.getScan().getLocationCode());
     Date currentSystemSortDate = new Date(currentSystemSortDateMS);
-    
+
     long earliestDateAllowedMS = currentSystemSortDateMS - (Integer.parseInt(m_numbSortDays)*sortDate.milliSecondsPerDay);
     Date earliestDateAllowed = new Date(earliestDateAllowedMS);
-    
+
     if (  ( packageSortDate.after(currentSystemSortDate) )
         ||( packageSortDate.before(earliestDateAllowed) ) ) {
-    // End of new code to eliminate the time component from the SortDate comparison    
+    // End of new code to eliminate the time component from the SortDate comparison
       state.setOverageFlag("SORTDATE");
       state.getScan().setErrorNumber(Messages.IM_OVERAGE);
       state.getScan().setAgencyCode(m_dateOverageAgencyCode);

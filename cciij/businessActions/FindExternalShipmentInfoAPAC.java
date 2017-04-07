@@ -15,7 +15,7 @@ import cciij.util.GetAPACLookupBean;
  * Description:  A project to create all the server side servlets and JSP that will be required to implement the CCII interface on a browser on the clients machine.
  * Copyright:    Copyright (c) 2002
  * Company:      FedEx Services
- * @author Steven Hurd
+ * @author Liu Xinghai
  * @version 1.0
  */
 
@@ -77,7 +77,7 @@ public class FindExternalShipmentInfoAPAC extends BusinessActionBase
 			state.getScan().setCustomsReleasedFlag("Y");
 			state.getScan().setDeclarationCode("Y");
 		}
-		
+
 
 		state.getUploadStatus().setBondTransferFlag(shipInfo.getBondTransfered());
 		state.getUploadStatus().setMPSIncompleteFlag(false);

@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title:        CCII Data Classes
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author Dan Krucoff
  * @version 1.0

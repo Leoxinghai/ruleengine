@@ -13,7 +13,7 @@ package cciij.businessActions;
  *
  * Copyright:    Copyright (c) 2003
  * Company:      FedEx Services
- * @author       Mike Roderick
+ * @author      Liu Xinghai
  * @version 1.0
  *
  * @return       state - State object.
@@ -40,8 +40,8 @@ public class DummyBrokerLookup extends BusinessActionBase {
 
     protected String m_groupName;
 
-    public DummyBrokerLookup() throws Exception 
-    {	
+    public DummyBrokerLookup() throws Exception
+    {
 	traceLog("DummyBrokerLookup","In Constructor()");
     }
 
@@ -50,7 +50,7 @@ public class DummyBrokerLookup extends BusinessActionBase {
 	super.readSiteConfigVariables();
     }
 
-    public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception 
+    public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception
     {
 	state.getScan().setBrokerClassificationCode("TST");
 	state.addPrintMapElement("ClearanceStatus","DUMMY");

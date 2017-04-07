@@ -3,9 +3,9 @@ package cciij.businessActions;
 /**
  * Title:        CCII Server Side GUI Development
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
- * @author Steven Hurd
+ * @author Liu Xinghai
  * @version 1.0
  * Modification History
  *   12/05/2005  Tom Knobeloch  Added edits for when timestamps should be checked.
@@ -245,7 +245,7 @@ public abstract class ModifyIntercept extends BusinessActionBaseWithOidGeneratio
     intercept.setDateUpdated(new Date(state.getScan().getSysDateTime()));
     intercept.setEmployeeNumberForUpdate(state.getScan().getUserLogon());
     intercept.setProcessNameUpdated(MODIFY_INTERCEPT_PROCESS_NAME);
-    
+
     // Only check transaction timestamps if the intercept db record has a timestamp
     // and if the incoming RecurringFlag logically matches the intercept db record
     if (   state.getScan().getTransactionTimestamp() != null

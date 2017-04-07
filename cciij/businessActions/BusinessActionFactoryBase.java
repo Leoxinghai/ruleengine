@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:        Business Action Factory
  * Description:  Construct Vector of Business Action objects.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Robert Fisher
  * @version 1.0
@@ -65,7 +65,7 @@ public class BusinessActionFactoryBase
  * Description:  Return the BusinessActionInterface object retrieved from
  *               the action objects Vector, using actionType as the index
  *               value for the Vector.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Robert Fisher
  * @version 1.0

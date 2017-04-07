@@ -8,7 +8,7 @@ package cciij.businessActions;
  *               If it is not correct an error code will be set.  The state object
  *               is returned to the caller.
  *
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Julie McCarthy
  * @version 1.1

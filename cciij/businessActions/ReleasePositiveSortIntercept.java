@@ -3,9 +3,9 @@ package cciij.businessActions;
 /**
  * Title:        CCII Server Side GUI Development
  * Description:  A project to create all the server side servlets and JSP that will be required to implement the CCII interface on a browser on the clients machine.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
- * @author Steven Hurd
+ * @author Liu Xinghai
  * @version 1.0
  */
  import cciij.cciidata.*;
@@ -63,7 +63,7 @@ public class ReleasePositiveSortIntercept extends SatisfyIntercept
 
             CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB",
                                                            "Failed to satisfy the Positive Sort Intercept:  " + ex,
-                                                           ex); 
+                                                           ex);
             throw cciiEx;
 
         }

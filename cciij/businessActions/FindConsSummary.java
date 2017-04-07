@@ -9,7 +9,7 @@ package cciij.businessActions;
  *                  o_consOid,  s_containerInd,  s_containerId,  s_consDestLoc,
  *                  s_destCountry  from the ConsSummary record.
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Gary Rockwood
  * @version 1.0

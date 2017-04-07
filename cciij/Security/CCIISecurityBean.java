@@ -5,9 +5,9 @@ package cciij.Security;
  * Description:  A project to create all the server side servlets and JSP that
  *               will be required to implement the CCII interface on a browser
  *               on the clients machine.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
- * @author Steven Hurd
+ * @author Liu Xinghai
  * @version 1.0
  *
  * * Modification history:

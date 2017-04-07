@@ -2,7 +2,7 @@ package cciij.cciidata;
 /**
  * Title: HandlingInstructions Role Class
  * Description:
- * Copyright:  Copyright (c) 2001
+ * Copyright:  Copyright (c) 2007
  * Company:  Fedex Services
  * @author
  * @version 1.0

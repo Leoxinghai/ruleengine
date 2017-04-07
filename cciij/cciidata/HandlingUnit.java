@@ -5,7 +5,7 @@ package cciij.cciidata;
 /**
  * Title: HandlingUnit Role Class
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:  Fedex Services
  * @author
  * @version 1.0
@@ -783,13 +783,13 @@ public class HandlingUnit  implements Serializable
 
     /**
      * setShipmentOidNumber
-     * @param int 
+     * @param int
      */
     public void setShipmentOidNumber(int oidNbr)
     {
         m_shipmentOidNumber = oidNbr;
     }
-    
+
     /**
      * toString
      * @return String
@@ -824,7 +824,7 @@ public class HandlingUnit  implements Serializable
 	s += "warehouseCode                 : " + m_warehouseCode+ "\n";
 	s += "destLocationCode              : " + m_destLocationCd + "\n";
 	s += "shuttleCode                   : " + m_shuttleCode + "\n";
-	s += "travelStatus                  : " + m_travelStatus + "\n";    
+	s += "travelStatus                  : " + m_travelStatus + "\n";
 	return s;
     }
 }

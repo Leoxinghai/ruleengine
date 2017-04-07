@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:
  * @author
  * @version 1.0
@@ -127,8 +127,8 @@ public class CreateIntercept extends ModifyIntercept
     intercept = createAndSaveNewIntercept(state,dbConnection,INTERCEPT_ACTIVE);
     //add clearance activity
     state = addClearanceActivity(state,intercept,isExceptionActivity);
-    state.addUploadKey(state.getScan().getLocationCode(), "INTERCEPT_DEF", 
-			  intercept.getInterceptCode(), "ADD");  
+    state.addUploadKey(state.getScan().getLocationCode(), "INTERCEPT_DEF",
+			  intercept.getInterceptCode(), "ADD");
 
     state.setInterceptedFlag("Y");
 
@@ -138,7 +138,7 @@ public class CreateIntercept extends ModifyIntercept
          state.getScan().getErrorNumber() != Messages.IM_MPS )
     {
 //    get the stage area //always create problem for CCII disable by xinghai.
-      
+
         /*
       getStageAreaForIntercept(state.getScan().getWarehouseCode(),
                             intercept.getAgencyCode(),
@@ -201,7 +201,7 @@ public class CreateIntercept extends ModifyIntercept
                                         CCIIState s,
                                         DatabaseBean db) throws Exception {
      InterceptCodeDefinition interceptCodeDefinition = null;
-    
+
      try {
         interceptCodeDefinition = db.fetchInterceptCodeDef(interceptCode);
      }
@@ -337,7 +337,7 @@ public class CreateIntercept extends ModifyIntercept
      // you are NOT in an MPS do nothing case
      return false;
   }
-  
+
   public static void main(String args[])
   {
       System.out.println("APACClearanceLabel.main()");
@@ -359,10 +359,10 @@ public class CreateIntercept extends ModifyIntercept
           l_scan.setInterceptCode("IN");
           l_scan.setUserLogon("bkkuat01");
           l_scan.setInViewName("RINVIEW");
-          
+
           l_scan.setSysDateTime(now);
           l_data.setRuleSetName("CREATEINT1");
-          
+
           //	    l_data.setLabelInterceptType("MPS STAGING");
 
           //	    l_data.m_printData.put("PieceQuantity","33");
@@ -392,5 +392,5 @@ public class CreateIntercept extends ModifyIntercept
 
       return;
   }
-  
+
 }

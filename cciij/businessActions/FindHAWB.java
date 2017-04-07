@@ -7,7 +7,7 @@ package cciij.businessActions;
  *               locating the Shipment, set the state object shipmentOid
  *               attribute to the shipmentOid contained in the Shipment.
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Robert Fisher
  * @version 1.0
@@ -109,11 +109,11 @@ private static final String m_whatVersion = "@(#) $RCSfile: FindHAWB.java,v $ $R
       state.getScan().setErrorNumber(Messages.IM_DISPLAY_RTN_MSG);
       throw new Exception("Duplicate HAWB from fetch");
   }
-  
+
 public static void main(String[] args) throws Exception
 {
       System.out.println("FindHAWB in main");
-   
+
       System.out.println("Leaving main");
     }
 

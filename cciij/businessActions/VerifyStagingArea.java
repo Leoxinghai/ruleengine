@@ -6,7 +6,7 @@ package cciij.businessActions;
  *               area code is "null" after the fetch from the database, an
  *               error message number is set in the state object. The state
  *               object is returned to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Robert Fisher
  * @version 1.0
@@ -38,11 +38,11 @@ import cciij.cciidatabase.*;
 import cciij.cciidata.*;
 import cciij.util.*;
 
-public class VerifyStagingArea extends BusinessActionBase 
+public class VerifyStagingArea extends BusinessActionBase
 {
     private Map m_allowedStageUsers = null;
 
-    public VerifyStagingArea() throws Exception 
+    public VerifyStagingArea() throws Exception
     {
 	traceLog("VerifyStagingArea","In Constructor");
 	m_allowedStageUsers = new TreeMap();
@@ -81,7 +81,7 @@ public class VerifyStagingArea extends BusinessActionBase
 
 	// Begining of kwick fix for CU 2/5/2003 mwr
 	String allowedStageUsers = null;
-	String allowedUserKey = state.getScan().getStagingAreaCode() + "_" 
+	String allowedUserKey = state.getScan().getStagingAreaCode() + "_"
 	    + state.getScan().getInViewName().toUpperCase() + "_ALLOWED_STAGE_USERS";
 	if((allowedStageUsers = m_config.getValue(allowedUserKey)) != null)
 	{
@@ -98,17 +98,17 @@ public class VerifyStagingArea extends BusinessActionBase
 
 	    if(allowedStageUserSet.contains(state.getScan().getUserLogon()))
 	    {
-		traceLog("VerifyStagingArea","Allowing Access to stage area " 
-			 + state.getScan().getStagingAreaCode() + " to user:  " 
+		traceLog("VerifyStagingArea","Allowing Access to stage area "
+			 + state.getScan().getStagingAreaCode() + " to user:  "
 			 + state.getScan().getUserLogon());
 	    }
 	    else
 	    {
-		String msg = "Denying Access to stage area " 
-		    + state.getScan().getStagingAreaCode() + " to user:  " 
+		String msg = "Denying Access to stage area "
+		    + state.getScan().getStagingAreaCode() + " to user:  "
 		    + state.getScan().getUserLogon() + " @ "
 		    + new java.util.Date();
-		
+
 		System.out.println(msg);
 
                 state.addExceptionActivity("ILLSTG");
@@ -119,7 +119,7 @@ public class VerifyStagingArea extends BusinessActionBase
 	else
 	{
 	    traceLog("VerifyStagingArea","Allowing Unrestricted Access to stage area "
-                     + state.getScan().getStagingAreaCode() + " to user:  " 
+                     + state.getScan().getStagingAreaCode() + " to user:  "
                      + state.getScan().getUserLogon());
 	}
 
@@ -134,7 +134,7 @@ public class VerifyStagingArea extends BusinessActionBase
     {
 	Set s = new TreeSet();
 	StringTokenizer t = new StringTokenizer(userString,",");
-	
+
 	while(t.hasMoreTokens())
 	{
 	    s.add(t.nextToken());

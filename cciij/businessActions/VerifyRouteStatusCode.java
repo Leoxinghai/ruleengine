@@ -4,7 +4,7 @@ package cciij.businessActions;
  * Title:        Verify Route Provided
  * Description:  This business action verifies the route for the package
  *               scanned is closed.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Srinivas Jawaji
  * @version 1.0

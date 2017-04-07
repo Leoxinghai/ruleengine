@@ -7,7 +7,7 @@ package cciij.businessActions;
  *               locating the Shipment, set the state object shipmentOid
  *               attribute to the shipmentOid contained in the Shipment.
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Tom Knobeloch
  * @version 1.0

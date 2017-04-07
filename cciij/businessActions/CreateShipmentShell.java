@@ -20,7 +20,7 @@ import java.util.Date;
  *              The Scan object is updated with the shipmentOid number and the
  *              state object is returned to the caller.
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Tom Knobeloch
  * @version 1.0
@@ -43,7 +43,7 @@ public class CreateShipmentShell extends BusinessActionBaseWithOidGeneration {
 
   private static final String m_whatVersion = "@(#) $RCSfile: CreateShipmentShell.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
-  public CreateShipmentShell() throws Exception 
+  public CreateShipmentShell() throws Exception
   {
   }
 

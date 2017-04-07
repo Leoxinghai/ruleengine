@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:       Post Scan
  * Description:
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0
@@ -23,7 +23,7 @@ package cciij.businessActions;
  * @param       dbConnection - valid database connection from connection pool.
  *
  * Modification History:
- * 02/27/2004   Julie McCarthy Modified to process each scan from the getScanVectorElement vector 
+ * 02/27/2004   Julie McCarthy Modified to process each scan from the getScanVectorElement vector
  *                             in the CCIIState object.  Also to add and activity to the activity
  *                             vector in the CCIIState object based on the SCAN_DEF record.
  *
@@ -57,13 +57,13 @@ public class PostScan extends BusinessActionBaseWithOidGeneration
     String activityCode = null;
     String scanCode = null;
     String locStatNbr = null;
-  
+
     traceLog("PostScan", "Begining doIt()");
     traceLog("PostScan", state);
 
-    
+
 System.out.println(" state before postScan loop " + state);
-    for (Iterator i = state.getScanVectorElement().iterator() ; i.hasNext(); ) 
+    for (Iterator i = state.getScanVectorElement().iterator() ; i.hasNext(); )
     {
       scan = (Scan) i.next();
 System.out.println(" in postScan loop " + scan);
@@ -81,7 +81,7 @@ System.out.println(" in postScan loop " + scan);
             new CCIILogException("BA_FETCH_ERROR_NUMB", "Scan definition: " + scanCode + ":" + locStatNbr + " not found in DB");
         throw cciiEx;
       }
-      else 
+      else
       if (scanDefinition.getActivityCode() != "")
       {
       	activityCode = scanDefinition.getActivityCode();
@@ -105,7 +105,7 @@ System.out.println(" in postScan loop " + scan);
     super.readSiteConfigVariables();
     //no local variables to read in
   }
-  
+
    public static void main(String args[])
   {
       try
@@ -117,8 +117,8 @@ System.out.println(" in postScan loop " + scan);
        {
           System.out.println(ex);
        }
-   } 
-   
+   }
+
    public void  test() throws Exception
    {
         traceLog("PostScan","In test method");
@@ -158,7 +158,7 @@ System.out.println(" in postScan loop " + scan);
         scan.setShipmentOid(12345);
         scan.setHandlingUnitOid(12345);
         scan.setUserLogon("92163");
-        scan.setLocStatNbr("22"); 
+        scan.setLocStatNbr("22");
         scan.setStagingAreaCode("EEC");
         scan.setLocationCode("NRT");
         scan.setWarehouseCode("IWJ");
@@ -176,6 +176,6 @@ System.out.println(" in postScan loop " + scan);
         System.out.println("After" + state);
         return;
     }
-  
+
 }
 

@@ -4,7 +4,7 @@ package cciij.businessActions;
  * Title:        Verify Route Status base
  * Description:  This is base class for business action which verifies the route for the package
  *               scanned is closed.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Srinivas Jawaji
  * @version 1.0
@@ -25,7 +25,7 @@ package cciij.businessActions;
  *                          specified HandlingUnitOid.
  *
  * Modification History:
- *   06/11/03  Tom Knobeloch   Removed database access and made use of RouteLegInfo 
+ *   06/11/03  Tom Knobeloch   Removed database access and made use of RouteLegInfo
  *                             in the state object.
  *                             Even though DatabaseBean dbConnection is no longer used,
  *                             it was NOT removed to maintain a consistent method
@@ -65,7 +65,7 @@ public abstract class  VerifyRouteStatusBase extends BusinessActionBase
   {
     RouteLeg routeLeg = null;
     traceLog("VerifyRouteStatusBase (RouteClosed)",state);
-    
+
     routeLeg = state.getRouteLegInfo();
     if ( routeLeg == null )
     {

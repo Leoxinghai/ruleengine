@@ -4,7 +4,7 @@ package cciij.businessActions;
  * Title:        Find Inbound Route Info
  * Description:  This is the class for the business action which retrieves the route leg info
  *               for the scanned package and stores it in the CCIIState object.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Tom Knobeloch
  * @version 1.0
@@ -54,7 +54,7 @@ public class  FindInboundRouteInfo extends BusinessActionBase
     super.readSiteConfigVariables();
   }
 
-  
+
   /**
    * doIt
    * @param CCIIState state
@@ -83,7 +83,7 @@ public class  FindInboundRouteInfo extends BusinessActionBase
     {
       state.getScan().setErrorNumber(Messages.EM_ROUTE_NOT_FND);
     }
-    
+
     state.setRouteLegInfo(routeLeg);
     return state;
   }

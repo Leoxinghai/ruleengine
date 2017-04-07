@@ -12,7 +12,7 @@ import java.util.Date;
  *              information from RPB consists of:
  *              - the shuttle code
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Joey Cline
  * @version 1.0
@@ -26,11 +26,11 @@ import java.util.Date;
  *
  * Modification History:
  */
-public class PostHandlingUnitSetShuttle extends PostHandlingUnitBase 
+public class PostHandlingUnitSetShuttle extends PostHandlingUnitBase
 {
   private static final String m_whatVersion = "@(#) $RCSfile: PostHandlingUnitSetShuttle.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
-  public PostHandlingUnitSetShuttle() throws Exception 
+  public PostHandlingUnitSetShuttle() throws Exception
   {
      traceLog("PostHandlingUnitSetShuttle","In Constructor");
   }
@@ -44,10 +44,10 @@ public class PostHandlingUnitSetShuttle extends PostHandlingUnitBase
   public static void main(String args[])
   {
      try
-     { 
+     {
         PostHandlingUnitSetShuttle postHandlingUnitSetShuttle = new PostHandlingUnitSetShuttle();
         postHandlingUnitSetShuttle.test();
-     }    
+     }
      catch (Exception e)
      {
         System.out.println(e);

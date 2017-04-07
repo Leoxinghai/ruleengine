@@ -5,7 +5,7 @@ package cciij.businessActions;
  * Description:   Post entries to the Clearance Activity Table
  * Copyright:     Copyright (c) 2002
  * Company:       FedEx Services
- * @author        Mike Roderick
+ * @author       Liu Xinghai
  * @version 3.2
  *
  * @throws        cciij.util.CCIILogException Failed to find the activityDef in the DB
@@ -26,9 +26,9 @@ package cciij.businessActions;
  * 05/06/2002    Robert Fisher Calls done() on JoltRemoteService
  *                             Establishes Jolt session if m_session == null
  *
- * 05/09/2002    Mike Roderick Complete re-write to do the work instead of calling WLActivity
- * 03/18/2003    Mike Roderick Changed to use the time/date from the scan object
- * 01/28/2004    Mike Roderick Changed to use the rmtc.util.TemplateParser.  This allows more dynamic templates.
+ * 05/09/2002   Liu Xinghai Complete re-write to do the work instead of calling WLActivity
+ * 03/18/2003   Liu Xinghai Changed to use the time/date from the scan object
+ * 01/28/2004   Liu Xinghai Changed to use the rmtc.util.TemplateParser.  This allows more dynamic templates.
  *
  */
 
@@ -56,7 +56,7 @@ public class PostActivity extends BusinessActionBaseWithOidGeneration {
 	//no local variables to read in
     }
 
-    public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception 
+    public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception
     {
         // need to call the PostActivity on the Inventory side
 

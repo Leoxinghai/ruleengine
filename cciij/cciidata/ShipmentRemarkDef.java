@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title:        RoleClasses
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author Kathleen Krucoff
  * @version 1.0

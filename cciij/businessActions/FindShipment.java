@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:       Find Shipmnent
  * Description:
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0
@@ -75,7 +75,7 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
     state.getScan().setAirbillNumber(shipment.getAWBNumber());
     state.getScan().setAirbillFormType(shipment.getFormTypeCode());
     state.getScan().setHandlingUnitOid(handlingUnit.getHandlingUnitOidNumber());
-    
+
     return state;
   }
 

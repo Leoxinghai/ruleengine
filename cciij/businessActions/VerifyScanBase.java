@@ -8,7 +8,7 @@ package cciij.businessActions;
  *              Oid number, and has an arrival scan type. If no record is found an error
  *              message (IM_NO_ARRIVAL_SCAN) is set in the scan object error message attribute.
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Lorraine Dominguez
  * @version 1.0
@@ -32,8 +32,8 @@ import cciij.util.*;
 
 public abstract class VerifyScanBase extends BusinessActionBase {
 
-private static final String m_whatVersion = "@(#) $RCSfile: VerifyScanBase.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n" ; 
-    
+private static final String m_whatVersion = "@(#) $RCSfile: VerifyScanBase.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n" ;
+
 
     public VerifyScanBase() throws Exception {
 	traceLog("VerifyScanBase","In Constructor");
@@ -52,9 +52,9 @@ private static final String m_whatVersion = "@(#) $RCSfile: VerifyScanBase.java,
 	//no local variables to read in
     }
 
-    // reads and returns the string value of ARRIVAL_SCAN_NAME from the config file 
+    // reads and returns the string value of ARRIVAL_SCAN_NAME from the config file
     protected abstract String getScanName() throws Exception;
-    
+
     protected abstract int getCodeForScanMissing(CCIIState state);
     protected abstract int getCodeForScanThere(CCIIState state);
 

@@ -2,8 +2,8 @@ package cciij.businessActions;
 
 /**
  * Title:       Post Piece Status
- * Description: 
- * Copyright:   Copyright (c) 2001
+ * Description:
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Lorraine Dominguez
  * @version 1.0
@@ -21,7 +21,7 @@ public class PostPieceOverageStatus extends BusinessActionBase {
 
    SortDate m_sortDate = new SortDate();
 
-   public PostPieceOverageStatus() throws Exception 
+   public PostPieceOverageStatus() throws Exception
    {
       traceLog("PostPieceStatus","In Constructor");
    }
@@ -38,7 +38,7 @@ public class PostPieceOverageStatus extends BusinessActionBase {
      PieceStatus ps = null;
      try
      {
-        ps = dbConnection.fetchPieceStatus(pieceOidNbr, locationCd, sortDate, pieceStatusCd); 
+        ps = dbConnection.fetchPieceStatus(pieceOidNbr, locationCd, sortDate, pieceStatusCd);
      }
      catch (Exception ex)
      {
@@ -59,7 +59,7 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
   traceLog("PostPieceStatus","Begining doIt()");
   traceLog("PostPieceStatus",state);
 
-  try 
+  try
   {
       PieceStatus pieceStatus = null;
       sortDate = m_sortDate.currentSortDate(state.getScan().getLocationCode(),new Date(state.getScan().getSysDateTime()));
@@ -93,9 +93,9 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
 
 	 activityCode = m_config.getValue("PIECE_STATUS_OVERAGE_ADD");
        }
-	    
+
   }
-  catch (Exception ex) 
+  catch (Exception ex)
   {
        state.getScan().setErrorNumber(Messages.EM_DB_ERROR);
        CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB", "Failure during fetch of PieceStatus", ex);

@@ -26,7 +26,7 @@ package cciij.businessActions;
  *
  *              Return the state object to the caller.
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0
@@ -84,8 +84,8 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
 
     if ( state.getInterceptedFlag().equals("Y") ) {
       state.getScan().setReturnMessage("Intercepts Exist");
-      if ( ( state.getScan().getInViewName().toUpperCase().equals("DEPVIEW") ) 
-        || ( state.getScan().getInViewName().toUpperCase().equals("CONSE_DEPVIEW") ) ) 
+      if ( ( state.getScan().getInViewName().toUpperCase().equals("DEPVIEW") )
+        || ( state.getScan().getInViewName().toUpperCase().equals("CONSE_DEPVIEW") ) )
       {
         if ( state.getScan().getErrorNumber() == Messages.IM_NOT_RELEASED ) {
          state.addExceptionActivity(m_notReleasedDepartureExceptionCode);

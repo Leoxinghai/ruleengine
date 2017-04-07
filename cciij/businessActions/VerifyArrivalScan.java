@@ -8,7 +8,7 @@ package cciij.businessActions;
  *              and has an arrival scan type. If no record is found an error message
  *              (IM_NO_ARRIVAL_SCAN) is set in the scan object error message attribute.
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0
@@ -36,7 +36,7 @@ public class VerifyArrivalScan extends VerifyScanBase {
 
     private static final String m_whatVersion = "@(#) $RCSfile: VerifyArrivalScan.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
-    public VerifyArrivalScan() throws Exception 
+    public VerifyArrivalScan() throws Exception
     {
 	traceLog("VerifyArrivalScan","In Constructor");
     }
@@ -56,7 +56,7 @@ public class VerifyArrivalScan extends VerifyScanBase {
     protected int getCodeForScanMissing(CCIIState state)
     {
 	if(readConfigVariableBool("PREVIOUS_ARRIVAL_REQUIRED",false))
-	{	    
+	{
 	    String exceptActCode = m_config.getValue("NO_PREV_ARRIVAL_EXCEPT_ACTIVITY_CODE");
 	    if((exceptActCode != null) && (exceptActCode.length() > 0))
 	    {
@@ -98,7 +98,7 @@ public class VerifyArrivalScan extends VerifyScanBase {
 	    {
 		state.addExceptionActivity(exceptActCode);
 	    }
-	    
+
 	    return Messages.EM_PREVIOUS_ARRIVAL;
 	}
     }

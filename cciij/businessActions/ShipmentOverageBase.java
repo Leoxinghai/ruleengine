@@ -24,7 +24,7 @@ import java.util.Date;
  *              The Scan object is updated with the shipmentOid number and the
  *              state object is returned to the caller.
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0
@@ -43,10 +43,10 @@ import java.util.Date;
  *
  * Modification History:
  * 12/26/2001   Ed McAleer     Add tags and changed exceptions to CCIILogException.
- * 04/29/2002   Mike Roderick  Added code for handling overage CRNs
- * 08/29/2002   Mike Roderick  Fixed code to avoid invalid duplicate HU's being created in
+ * 04/29/2002  Liu Xinghai  Added code for handling overage CRNs
+ * 08/29/2002  Liu Xinghai  Fixed code to avoid invalid duplicate HU's being created in
  *                             wierd situations.
- * 03/10/2004   Gary Rockwood  Moved ShipmentOverage.java to ShipmentOverageBase.java and 
+ * 03/10/2004   Gary Rockwood  Moved ShipmentOverage.java to ShipmentOverageBase.java and
  *                             added the 'setTravelStatusValue' method
  */
 
@@ -54,7 +54,7 @@ public abstract class ShipmentOverageBase extends BusinessActionBaseWithOidGener
 
   private static final String m_whatVersion = "@(#) $RCSfile: ShipmentOverageBase.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
-  public ShipmentOverageBase() throws Exception 
+  public ShipmentOverageBase() throws Exception
   {
   }
 

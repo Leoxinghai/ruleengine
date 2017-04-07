@@ -10,7 +10,7 @@ package cciij.businessActions;
  *              - the last modified date timestamp
  *              - the last user name
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Lorraine Dominguez
  * @version 1.0
@@ -35,7 +35,7 @@ public class PostHandlingUnitSetPlaceToBlank extends PostHandlingUnitBase {
 
 private static final String m_whatVersion = "@(#) $RCSfile: PostHandlingUnitSetPlaceToBlank.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
-public PostHandlingUnitSetPlaceToBlank() throws Exception 
+public PostHandlingUnitSetPlaceToBlank() throws Exception
 {
    traceLog("PostHandlingUnitBase","In Constructor");
 
@@ -57,7 +57,7 @@ public static void main(String args[])
    {
       PostHandlingUnitSetPlaceToBlank postHandlingUnitSetPlaceToBlank = new PostHandlingUnitSetPlaceToBlank();
       postHandlingUnitSetPlaceToBlank.test();
-   }   
+   }
    catch (Exception e)
    {
       System.out.println(e);

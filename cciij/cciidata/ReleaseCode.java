@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title:        RoleClasses
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author Lorraine Dominguez
  * @version 1.0
@@ -44,7 +44,7 @@ public class ReleaseCode implements Serializable
 		     String createProcessName,
 		     Date dateReleaseCodeUpdated,
 		     String updateEmployeeNumber,
-		     String updateProcessName, 
+		     String updateProcessName,
 		     String uploadedFlag,
 		     int pieceOidNumber,
 		     String locationCode)
@@ -86,7 +86,7 @@ public class ReleaseCode implements Serializable
    * getShipmentOidNumber
    * @return int
   */
-  public int getShipmentOidNumber() 
+  public int getShipmentOidNumber()
   {
      return  m_shipmentOidNumber;
   }
@@ -95,7 +95,7 @@ public class ReleaseCode implements Serializable
    * getPieceOidNumber
    * @return int
   */
-  public int getPieceOidNumber() 
+  public int getPieceOidNumber()
   {
      return  m_pieceOidNumber;
   }
@@ -104,7 +104,7 @@ public class ReleaseCode implements Serializable
    * getActiveInactiveFlag
    * @return String
   */
-  public String getActiveInactiveFlag() 
+  public String getActiveInactiveFlag()
   {
      return  m_activeInactiveFlag;
   }
@@ -113,7 +113,7 @@ public class ReleaseCode implements Serializable
     * getCreateDate
     * @return Date
   */
-  public Date getCreateDate() 
+  public Date getCreateDate()
   {
      return m_createDate;
   }
@@ -122,7 +122,7 @@ public class ReleaseCode implements Serializable
     * getUpdateDate
     * @return Date
   */
-  public Date getUpdateDate() 
+  public Date getUpdateDate()
   {
      return m_dateReleaseCodeUpdated;
   }
@@ -132,16 +132,16 @@ public class ReleaseCode implements Serializable
    * getCreateEmployeeNumber
    * @return String
   */
-  public String getCreateEmployeeNumber() 
+  public String getCreateEmployeeNumber()
   {
      return  m_createEmployeeNumber;
   }
-		
+
   /**
    * getDateReleaseCodeUpdated
    * @return Date
   */
-  public Date getDateReleaseCodeUpdated() 
+  public Date getDateReleaseCodeUpdated()
   {
      return m_dateReleaseCodeUpdated;
   }
@@ -151,7 +151,7 @@ public class ReleaseCode implements Serializable
    * getUpdateEmployeeNumber
    * @return String
   */
-  public String getUpdateEmployeeNumber() 
+  public String getUpdateEmployeeNumber()
   {
      return m_updateEmployeeNumber;
   }
@@ -160,7 +160,7 @@ public class ReleaseCode implements Serializable
    * getCreatedProcessName
    * @return String
   */
-  public String getCreatedProcessName() 
+  public String getCreatedProcessName()
   {
      return m_createProcessName;
   }
@@ -169,7 +169,7 @@ public class ReleaseCode implements Serializable
    * getUpdatedProcessName
    * @return String
   */
-  public String getUpdatedProcessName() 
+  public String getUpdatedProcessName()
   {
      return m_updateProcessName;
   }
@@ -178,7 +178,7 @@ public class ReleaseCode implements Serializable
    * getUploadedFlag
    * @return String
   */
-  public String getUploadedFlag() 
+  public String getUploadedFlag()
   {
      return m_uploadedFlag;
   }
@@ -188,7 +188,7 @@ public class ReleaseCode implements Serializable
    * getLocationCd
    * @return String
   */
-  public String getLocationCd() 
+  public String getLocationCd()
   {
      return m_locationCd;
   }
@@ -197,7 +197,7 @@ public class ReleaseCode implements Serializable
    * setLocationCd
    * @param String
   */
-  public void setLocationCd(String s) 
+  public void setLocationCd(String s)
   {
      if(s == null)
      {
@@ -214,7 +214,7 @@ public class ReleaseCode implements Serializable
     * setActiveInactiveFlag
     * @param boolean
    */
-   public void setActiveInactiveFlag(boolean isActive) 
+   public void setActiveInactiveFlag(boolean isActive)
    {
       if(isActive == true)
       {
@@ -231,7 +231,7 @@ public class ReleaseCode implements Serializable
     * setUploadFlag
     * @param boolean
   */
-  public void setUploadFlag(boolean isUploaded) 
+  public void setUploadFlag(boolean isUploaded)
   {
      if(isUploaded == true)
      {
@@ -341,7 +341,7 @@ public class ReleaseCode implements Serializable
    * setDateUpdated
    * @param Date
   */
-  public void setDateUpdated(Date newDate) 
+  public void setDateUpdated(Date newDate)
   {
      m_dateReleaseCodeUpdated = newDate;
   }

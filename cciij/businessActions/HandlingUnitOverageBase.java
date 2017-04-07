@@ -13,7 +13,7 @@ import java.util.Date;
  *              Persist the HandlingUnit object to the database. \
  *              Return the state object to the caller.
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0
@@ -38,7 +38,7 @@ import java.util.Date;
 
 public abstract class HandlingUnitOverageBase extends BusinessActionBaseWithOidGeneration {
 
-   public HandlingUnitOverageBase() throws Exception 
+   public HandlingUnitOverageBase() throws Exception
    {
        traceLog("HandlingUnitOverage","In constructor");
    }

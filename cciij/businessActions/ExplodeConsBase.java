@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:        ExplodeConsBase
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Lorraine Dominguez
  * @version 1.0

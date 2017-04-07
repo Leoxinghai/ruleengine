@@ -10,7 +10,7 @@ package cciij.businessActions;
  *              - the last modified date timestamp
  *              - the last user name
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0

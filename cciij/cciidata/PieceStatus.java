@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title: FlightInfo Role Class
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:  Fedex Services
  * @author
  * @version 1.0
@@ -100,14 +100,14 @@ public class PieceStatus implements Serializable
 	 {
 	    m_locationCd = s ;
 	 }
-      }	
+      }
 
 
     /**
      *getSortDt
      * @param Date
      */
-     public Date getSortDt() 
+     public Date getSortDt()
      {
         return m_sortDt;
      }
@@ -116,7 +116,7 @@ public class PieceStatus implements Serializable
      * setSortDt
      * @param Dt
      */
-     public void setSortDt(Date dt) 
+     public void setSortDt(Date dt)
      {
         m_sortDt = dt;
      }
@@ -212,7 +212,7 @@ public class PieceStatus implements Serializable
 	 {
 	    m_resolutionStatusCd = "";
 	 }
-         else	
+         else
 	 {
 	    m_resolutionStatusCd = s ;
 	 }

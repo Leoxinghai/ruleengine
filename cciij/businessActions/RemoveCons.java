@@ -7,7 +7,7 @@ package cciij.businessActions;
  *               If the entry is found mark it with a "D" in the DeconsFlag field and
  *               put the IM_DEL_FROM_CONS in i_errorNumber.
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Gary Rockwood
  * @version 1.0

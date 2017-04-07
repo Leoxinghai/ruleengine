@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:       Oid Generator
  * Description:
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0
@@ -20,8 +20,8 @@ package cciij.businessActions;
  * 12/26/2001    Ed McAleer   Add tags and complete description.
  *
  * 05/06/2002  Robert Fisher  Clean up jolt remote service, and session attributes each call
- * 05/08/2002  Mike Roderick  Now calls OIDSERVER directly and only does so when the block is empty
- * 10/27/2003  Mike Roderick  Now calls rmtc.OidServer.OidFactory.getOid() which calls the new EJB OidServer
+ * 05/08/2002 Liu Xinghai  Now calls OIDSERVER directly and only does so when the block is empty
+ * 10/27/2003 Liu Xinghai  Now calls rmtc.OidServer.OidFactory.getOid() which calls the new EJB OidServer
  *
  */
 
@@ -43,7 +43,7 @@ public class OidGenerator {
 
     protected rmtc.OidServer.OidFactory m_oidFactory;
 
-    private void initialize() throws Exception 
+    private void initialize() throws Exception
     {
 //         m_tableName[OidFactoryTypes.ACTIVITYLOG] = "clearanceActivity";
 //         m_tableName[OidFactoryTypes.CHANGE] = "change";
@@ -76,7 +76,7 @@ public class OidGenerator {
 
 
 
-    public static void main(String[] args) throws Exception 
+    public static void main(String[] args) throws Exception
     {
         System.out.println("OID Generator in main");
 
@@ -108,7 +108,7 @@ public class OidGenerator {
 	    for(int i=0;i<howManyThreads;i++)
 	    {
 		System.out.println("Starting Thread #" + i);
-		
+
 		tc[i] = new TestClass(howMany,
                                       OidFactoryTypes.SHIPMENT,
                                       s,

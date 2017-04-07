@@ -13,7 +13,7 @@ package cciij.businessActions;
  *
  * Copyright:    Copyright (c) 2003
  * Company:      FedEx Services
- * @author       Mike Roderick
+ * @author      Liu Xinghai
  * @version 1.0
  *
  * @return       state - State object.
@@ -40,12 +40,12 @@ public class AddActivity extends BusinessActionBase {
 
     protected String m_groupName;
 
-    public AddActivity(String groupName) throws Exception 
+    public AddActivity(String groupName) throws Exception
     {
 	super(groupName);
 
 	m_groupName = groupName;
-	
+
 	traceLog("AddActivity","In Constructor(" + groupName + ")");
     }
 
@@ -54,7 +54,7 @@ public class AddActivity extends BusinessActionBase {
 	super.readSiteConfigVariables();
     }
 
-    public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception 
+    public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception
     {
 	String actCode;
 
@@ -86,11 +86,11 @@ public class AddActivity extends BusinessActionBase {
 	try
 	{
 	    CCIIState state = new CCIIState();
-	    
+
 	    AddActivity assMst = new AddActivity("ASSOCIATE_MASTER");
-	    
+
 	    assMst.doIt(state,null);
-	    
+
 	    System.out.println("Activity Vector after AddActivity:  " + state.getActivityCodes());
 	}
 	catch(Exception e)

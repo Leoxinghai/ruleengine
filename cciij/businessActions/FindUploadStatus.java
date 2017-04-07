@@ -2,7 +2,7 @@ package cciij.businessActions;
 /**
  * Title:       Find Upload Status
  * Description:
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Gary Rockwood
  * @version 1.0
@@ -30,7 +30,7 @@ public class FindUploadStatus extends GetContextBase
 {
   private static final String m_whatVersion = "@(#) $RCSfile: FindUploadStatus.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
-  private MessageToCaBrkr MTCB = null; 
+  private MessageToCaBrkr MTCB = null;
 
   public FindUploadStatus() throws Exception
   {
@@ -48,7 +48,7 @@ public class FindUploadStatus extends GetContextBase
 
     if (state.getScan().getUserLogon().equals("112233"))
     {
-      MTCB = new MessageToCaBrkr();  
+      MTCB = new MessageToCaBrkr();
 
       System.out.println("Calling MessageToCanBrkr.LoadDummy from FindUploadStatus");
       MTCB.LoadDummy();
@@ -65,7 +65,7 @@ public class FindUploadStatus extends GetContextBase
         (state.getAbScanned().equals(state.getScan().getAirbillNumber())))
     {
         state.getUploadStatus().setConsUploadFlag(true);
-        state.getUploadStatus().setNoConsUploadFlag(false); 
+        state.getUploadStatus().setNoConsUploadFlag(false);
     }
     else
     {
@@ -99,7 +99,7 @@ public class FindUploadStatus extends GetContextBase
         catch (Exception ex)
         {
             state.getScan().setErrorNumber(Messages.EM_DB_ERROR);
-            CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB","Shipment Fetch Failed, Oid = <" + 
+            CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB","Shipment Fetch Failed, Oid = <" +
                                                       state.getScan().getShipmentOid() + ">");
             throw cciiEx;
         }
@@ -210,7 +210,7 @@ public class FindUploadStatus extends GetContextBase
             {
                 i_bit += 8;
                 b_damaged = true;
-            } 
+            }
             // If any of the above then the package is damaged
             if (b_damaged)
             {

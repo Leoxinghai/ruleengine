@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title:        RoleClasses
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author Kathleen Krucoff
  * @version 1.0
@@ -103,56 +103,56 @@ public class RouteLeg implements Serializable, Cloneable {
   protected void finalize() {
 
   }
-  
+
   /**
    * clone
    */
   public Object clone()
   {
      RouteLeg copy;
-     
+
      try
      {
         copy = (RouteLeg)super.clone();
      }
-     
+
      catch(CloneNotSupportedException e)
      {
         System.out.println("RouteLeg.clone() caught: " + e);
         e.printStackTrace(System.out);
         return null;
      }
-     
+
      if (m_routeDate != null)
      {
         copy.m_routeDate = (Date)m_routeDate.clone();
      }
-     
+
      if (m_departureGMTTimestamp != null)
      {
         copy.m_departureGMTTimestamp = (Date)m_departureGMTTimestamp.clone();
      }
-     
+
      if (m_arrivalGMTTimestamp != null)
      {
         copy.m_arrivalGMTTimestamp = (Date)m_arrivalGMTTimestamp.clone();
      }
-     
+
      if (m_departureLocalTimestamp != null)
      {
         copy.m_departureLocalTimestamp = (Date)m_departureLocalTimestamp.clone();
      }
-     
+
      if (m_arrivalLocalTimestamp != null)
      {
         copy.m_arrivalLocalTimestamp = (Date)m_arrivalLocalTimestamp.clone();
      }
-     
+
      if (m_sortDate != null)
      {
         copy.m_sortDate = (Date)m_sortDate.clone();
      }
-     
+
      return copy;
   }
 

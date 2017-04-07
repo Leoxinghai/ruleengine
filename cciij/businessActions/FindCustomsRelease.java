@@ -22,7 +22,7 @@ package cciij.businessActions;
  *
  *               Finally, return the state object to the caller.
  *
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Robert Fisher
  * @version 1.0
@@ -72,7 +72,7 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
     if ( state.getPositiveSort() == false ) {
       return state;
     }
-    
+
     try {
         shipment =  dbConnection.fetchShipment(state.getScan().getShipmentOid());
         if ( shipment == null ) {
@@ -88,9 +88,9 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
         CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB","Shipment Fetch Failed");
         throw cciiEx;
       }
-      
+
       state.getScan().setCustomsReleasedFlag(shipment.getCustomsReleaseFlag());
-    
+
 /*
     if ( (state.getOverageFlag().equals("Y")
 //         || state.getOverageFlag().equals("M")

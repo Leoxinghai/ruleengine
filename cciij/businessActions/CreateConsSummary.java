@@ -6,7 +6,7 @@ package cciij.businessActions;
  *               First determine if the ConsSummary already exists.
  *               If it does not exist, create it
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Gary Rockwood
  * @version 1.0
@@ -135,7 +135,7 @@ public class CreateConsSummary extends BusinessActionBaseWithOidGeneration {
                     state.getScan().setErrorNumber(Messages.EM_DB_ERROR);
                     CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB","Split Read failed in CreatConsSummary");
                 }
-              
+
                 // Check if a Split Record was found
                 if (rdSplit != null)
                 {

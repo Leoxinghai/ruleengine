@@ -8,7 +8,7 @@ package cciij.businessActions;
  * Copyright:    Copyright (c) 2003
  * Company:      FedE
 
- * @author       Mike Roderick
+ * @author      Liu Xinghai
  * @version 1.0
  *
  * @throws

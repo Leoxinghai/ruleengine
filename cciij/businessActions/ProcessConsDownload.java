@@ -10,7 +10,7 @@ package cciij.businessActions;
  *               (FindNestedConsSummary or FindHandlingUnit) may
  *               set the element OidNbr to match to manifest data.
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Tom Knobeloch
  * @version 1.0
@@ -92,7 +92,7 @@ public class ProcessConsDownload extends BusinessActionBaseWithOidGeneration
         //  Ignore the error and set flightDate to null
         flightDate = null;
       }
-     
+
       // Now Create the ConsSummary entry
       consSummary = new ConsSummary(getOid(OidFactoryTypes.CONSSUMMARY),          // Cons Oid (Create one here)
                                     state.getScan().getConsId(),                  // Cons Number
@@ -225,7 +225,7 @@ public class ProcessConsDownload extends BusinessActionBaseWithOidGeneration
       deconsFlg = "D";
       adjustmentQty = -1;
     }
-      
+
     // If this is a nested CONS put
     if (state.getScan().getAirbillType().equals("3"))
     {
@@ -279,7 +279,7 @@ public class ProcessConsDownload extends BusinessActionBaseWithOidGeneration
     catch (Exception ex)
     {
       state.getScan().setErrorNumber(Messages.EM_DB_ERROR);
-      CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB", 
+      CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB",
 			   "ConsSummary update failed", ex);
       throw cciiEx;
     }

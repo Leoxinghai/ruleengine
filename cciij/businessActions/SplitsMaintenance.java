@@ -14,12 +14,12 @@ package cciij.businessActions;
  *                     PRT - Print an existing Split on barcode labels (Validate it exists)
  *                     RLD - Re-load URSA, EDIT and Splits
  *                     RNM - Rename Split
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Gary Rockwood
  * @version 1.0
  *
- * @throws       
+ * @throws
  *
  * @return       state - State object.
  *
@@ -101,7 +101,7 @@ public class SplitsMaintenance extends BusinessActionBase
             return state;
         }
 
-        // Find the specified Split and read 
+        // Find the specified Split and read
 //        System.out.println("SplitMaintenance splitNumber >" + state.getScan().getSplitNumber() + "<");
 //        System.out.println("SplitMaintenance splitFunction >" + state.getScan().getSplitFunction() + "<");
 
@@ -175,7 +175,7 @@ public class SplitsMaintenance extends BusinessActionBase
                     {
                         s_saveSplitDesc = s_locationCd + state.getScan().getSplitNumber() +
                                           " to " + state.getScan().getSplitDestId();
-                    } 
+                    }
 //                    s_saveSplitDesc = "Split Updated by scanning Barcodes";
                     s_saveRecordActiveFlg = "Y";
 
@@ -229,12 +229,12 @@ public class SplitsMaintenance extends BusinessActionBase
 //                state.getScan().setErrorNumber(Messages.EM_UNKNOWN_SPLIT);
 //            }
 //        }
- 
+
 //        // EDT Split ***********************************************************
 //        if (state.getScan().getSplitFunction().equals("EDT"))
 //        {
-//            // After editing the Split info return as an ADD          
-// 
+//            // After editing the Split info return as an ADD
+//
 //            if (ReadSplit(state, dbConnection) == true)
 //            {
 //                // Process the split buffer
@@ -243,7 +243,7 @@ public class SplitsMaintenance extends BusinessActionBase
 //                    // return with a Read Error
 //                    state.getScan().setErrorNumber(Messages.EM_SPLIT_READ_ERR);
 //                }
-//                // Tell ScanClient that this is the EDT function that now needs updating 
+//                // Tell ScanClient that this is the EDT function that now needs updating
 //            }
 //            else
 //            {
@@ -435,7 +435,7 @@ public class SplitsMaintenance extends BusinessActionBase
     ////////////////////////////////////////////////////////////////////
     //
     //    WriteSplit  Writes information in m_splitFormat into Split directory
-    // 
+    //
     ////////////////////////////////////////////////////////////////////
     private boolean WriteSplit(CCIIState state, DatabaseBean dbConnection, String Action)
     {
@@ -449,7 +449,7 @@ public class SplitsMaintenance extends BusinessActionBase
         split.setRecordActiveFlg(s_saveRecordActiveFlg);
         split.setUpdateDt(new Date(state.getScan().getSysDateTime()));
         split.setUpdateEmployeeNbr(state.getScan().getUserLogon());
-        
+
         try
         {
 /*            if (Action.equals("UPDATE") == true)
@@ -550,7 +550,7 @@ public class SplitsMaintenance extends BusinessActionBase
             int i_lastByte = -1;
             for (int i=0; i<320; i++)
             {
-//                System.out.println("Prefix Split, index " + i + " char " + 
+//                System.out.println("Prefix Split, index " + i + " char " +
 //                                    state.getScan().getSplitArray().charAt(i));
                 // Each character represents a nibble of a byte array
                 byte i_value = 0;
@@ -582,13 +582,13 @@ public class SplitsMaintenance extends BusinessActionBase
                 if (i_mod == 0)
                 {
                     // Left hand nibble
-                    i_hold = (byte)(i_hold + (i_value << 4));    // Shift the bits by 4 
+                    i_hold = (byte)(i_hold + (i_value << 4));    // Shift the bits by 4
                 }
                 else
                 {
                     // Right hand nibble
                     i_hold = (byte)(i_hold + i_value);           // No shift just add to byte
-                } 
+                }
 
                 m_splitFormat[i_byte + 6] = i_hold;
             }
@@ -599,7 +599,7 @@ public class SplitsMaintenance extends BusinessActionBase
 //            System.out.println("Suffix, or Airport or Airport Exception Split");
             for (int i=0; i<160; i++)
             {
-//                System.out.println("S, A, E  Split, index " + i + " char " + 
+//                System.out.println("S, A, E  Split, index " + i + " char " +
 //                                    state.getScan().getSplitArray().charAt(i));
                 m_splitFormat[i+6] = (byte)state.getScan().getSplitArray().charAt(i);
             }
@@ -616,14 +616,14 @@ public class SplitsMaintenance extends BusinessActionBase
                  j++;
             }
         }
-        
+
         // Move Handling into position
 //        System.out.println("Split Handling >" + state.getScan().getSplitHandling() + "<");
         m_splitFormat[176] = (byte)Integer.parseInt(state.getScan().getSplitHandling());
 
         // Move Special Handling
 //        System.out.println("Split Spc Handling >" + state.getScan().getSplitSpcHandling() + "<");
-        for (int i=0; i<3; i++)  
+        for (int i=0; i<3; i++)
         {
             m_splitFormat[i+177] = (byte)(state.getScan().getSplitSpcHandling().charAt(i) - '0');
         }
@@ -651,7 +651,7 @@ public class SplitsMaintenance extends BusinessActionBase
         {
             // Prefix Split
             m_splitFormat[182] = (byte)0xFF;
-        } 
+        }
         else if (state.getScan().getSplitType().charAt(0) == 'S')
         {
             // Suffix Split
@@ -689,12 +689,12 @@ public class SplitsMaintenance extends BusinessActionBase
 //        System.out.println("Split CRC > " + i_crc + "<");
 
         m_splitFormat[SplitsCheck.SPLIT_RECORD_SIZE-2] = (byte)((i_crc >>> 8) & 0x00FF);
-        m_splitFormat[SplitsCheck.SPLIT_RECORD_SIZE-1] = (byte)(i_crc & 0x00FF); 
+        m_splitFormat[SplitsCheck.SPLIT_RECORD_SIZE-1] = (byte)(i_crc & 0x00FF);
 //        System.out.println("Split 1 >" + (byte)(i_crc >>> 8));
 //        System.out.println("Split 2 >" + (byte)(i_crc & 0x00FF));
 
         return SplitsCheck.SPLIT_RECORD_SIZE;  // Split file size
-         
+
     }
 
 
@@ -759,7 +759,7 @@ public class SplitsMaintenance extends BusinessActionBase
             s_working[0] = (char)(m_splitFormat[180]);
         }
         else
-        { 
+        {
             s_working[0] = (char)(m_splitFormat[180] + (byte)'0');
         }
         state.getScan().setSplitBoxDoc(String.copyValueOf(s_working,0,1));
@@ -817,7 +817,7 @@ public class SplitsMaintenance extends BusinessActionBase
                 int i_byte = i / 2;
                 byte i_hold = m_splitFormat[i_byte + 6];
 
-                byte i_value = (byte)((int)i_hold >>> 4); 
+                byte i_value = (byte)((int)i_hold >>> 4);
                 if ((i_value >= 0) && (i_value <= 9))
                 {
                     s_working[i] = (char)(i_value + '0');

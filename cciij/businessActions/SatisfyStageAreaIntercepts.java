@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:       Satisfy Area Intercepts
  * Description:
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0
@@ -81,7 +81,7 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
     // All intercepts can only be satisfied if all in this SA can be satisfied
     satisfyCurrentStageArea(dbConnection, state);
 
-    if ( state.getScan().getErrorNumber() == Messages.EM_NOT_CLEARED ) 
+    if ( state.getScan().getErrorNumber() == Messages.EM_NOT_CLEARED )
     {
       traceLog("SatisfyStageAreaIntercepts","Could'nt satisfy in the current stage area.. returning");
       return state;
@@ -89,7 +89,7 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
 
     // Only check the other staging areas if the current staging area is all clear and
     // The stageOutside area Satisfy flag is set to 'Y'
-    if ( stagingArea.getStageOutSatisfiesAllIntercepts().equals("Y") ) 
+    if ( stagingArea.getStageOutSatisfiesAllIntercepts().equals("Y") )
     {
       // Run thru remaining Intercepts and see if they can be satisifed individually
       satisfyAllStageAreas(dbConnection, state);
@@ -112,7 +112,7 @@ private void satisfyCurrentStageArea(DatabaseBean db, CCIIState s) throws Except
     Vector interceptVector = null;
 
 // Look for active intercepts for this SA based on staging by AGENCY or INTERCEPT
-  if ( m_stageAgencyOrIntercept.toUpperCase().equals("INTERCEPT") ) 
+  if ( m_stageAgencyOrIntercept.toUpperCase().equals("INTERCEPT") )
   {
     traceLog("SatisfyStageAreaIntercepts","lookup by intercept staging");
     try {
@@ -121,7 +121,7 @@ private void satisfyCurrentStageArea(DatabaseBean db, CCIIState s) throws Except
                                                         s.getScan().getStagingAreaCode(),
                                                         s.getScan().getWarehouseCode());
     }
-    catch (Exception ex) 
+    catch (Exception ex)
     {
        s.getScan().setErrorNumber(Messages.EM_DB_ERROR);
        CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB",
@@ -129,17 +129,17 @@ private void satisfyCurrentStageArea(DatabaseBean db, CCIIState s) throws Except
        throw cciiEx;
     }
   }
-  else if ( m_stageAgencyOrIntercept.toUpperCase().equals("AGENCY") ) 
+  else if ( m_stageAgencyOrIntercept.toUpperCase().equals("AGENCY") )
   {
     traceLog("SatisfyStageAreaIntercepts","lookup by agency staging");
-    try 
+    try
     {
       intercept =  db.fetchInterceptJoiningAgencyTable(s.getScan().getShipmentOid(),
                                                        s.getScan().getHandlingUnitOid(),
                                                        s.getScan().getStagingAreaCode(),
                                                        s.getScan().getWarehouseCode());
     }
-    catch (Exception ex) 
+    catch (Exception ex)
     {
        s.getScan().setErrorNumber(Messages.EM_DB_ERROR);
        CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB",
@@ -147,7 +147,7 @@ private void satisfyCurrentStageArea(DatabaseBean db, CCIIState s) throws Except
        throw cciiEx;
     }
   }
-  else 
+  else
   {
     CCIILogException cciiEx = new CCIILogException("BA_CONFIG_ERROR_NUMB",
     "Config Error, SITE_STAGE_AGENCY_OR_INTERCEPT unknown value == "
@@ -155,13 +155,13 @@ private void satisfyCurrentStageArea(DatabaseBean db, CCIIState s) throws Except
     throw cciiEx;
   }
 
-  if ( intercept == null ) 
+  if ( intercept == null )
   {
     // no work to do here so just return
     traceLog("SatisfyStageAreaIntercepts","no active intercepts, leaving");
     return;
   }
-  else 
+  else
   {
     // Put this entry in the vector of intercepts along with possible others
     traceLog("SatisfyStageAreaIntercepts","call loadInterceptVectory");
@@ -176,12 +176,12 @@ private void satisfyCurrentStageArea(DatabaseBean db, CCIIState s) throws Except
                                                           false);     // 'false' means means not outside SA
 
 //  If allAgenciesAllowSatisfy then proceed, else return with error message
-    if ( allAgenciesAllowSatisfy == false ) 
+    if ( allAgenciesAllowSatisfy == false )
     {
       // At lease 1 agency in this Staging Area does not allow the clear
       s.getScan().setErrorNumber(Messages.EM_NOT_CLEARED);
     }
-    else 
+    else
     {
       // if we got here then all intercepts in this Staging Area are allowed to be satisfied
       traceLog("SatisfyStageAreaIntercepts","going to try and clear'em");
@@ -198,11 +198,11 @@ private void satisfyAllStageAreas(DatabaseBean db, CCIIState s) throws Exception
   boolean allAgenciesAllowSatisfy = true;
   Vector interceptVector = null;
 
-  try 
+  try
   {
     intercept = db.fetchIntercept(s.getScan().getShipmentOid(), s.getScan().getHandlingUnitOid());
   }
-  catch (Exception ex) 
+  catch (Exception ex)
   {
     s.getScan().setErrorNumber(Messages.EM_DB_ERROR);
     CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB",
@@ -210,20 +210,20 @@ private void satisfyAllStageAreas(DatabaseBean db, CCIIState s) throws Exception
     throw cciiEx;
   }
 
-  if ( intercept == null ) 
+  if ( intercept == null )
   {
     // no work to do here so just return
     traceLog("SatisfyStageAreaIntercepts","no active intercepts for other stage areas, leaving");
     return;
   }
-  else 
+  else
   {
     // Put the intercept into a intercept vector, others may also be added
     traceLog("SatisfyStageAreaIntercepts","call loadInterceptVector for other stage areas");
     interceptVector = loadInterceptVector(db, intercept, s);
   }
 
-   // if the agency indicates that the intercept can be satisified, then do it 
+   // if the agency indicates that the intercept can be satisified, then do it
    allAgenciesAllowSatisfy = verifyAllAgenciesAllowSatisfy(db,
                                                           interceptVector,
                                                           s,
@@ -233,7 +233,7 @@ private void satisfyAllStageAreas(DatabaseBean db, CCIIState s) throws Exception
    // Agency entry indicates that they can be satisified.  This is done in the
    // verifyAllAgenciesAllowSatisfy when last argument is 'true'
 
-   return; 
+   return;
 
 }
 
@@ -251,16 +251,16 @@ private boolean verifyAllAgenciesAllowSatisfy(DatabaseBean db,
   // Assume all is good until there is a false
   b_satisfiedFlag = true;
 
-  for ( Iterator it = interceptVector.iterator(); it.hasNext(); ) 
+  for ( Iterator it = interceptVector.iterator(); it.hasNext(); )
   {
     intercept = (Intercept) it.next();
 
     // fetch the agency for the intercept
-    try 
+    try
     {
       agency = db.fetchAgency(intercept.getAgencyCode());
     }
-    catch (Exception ex) 
+    catch (Exception ex)
     {
       s.getScan().setErrorNumber(Messages.EM_DB_ERROR);
       CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB",
@@ -268,7 +268,7 @@ private boolean verifyAllAgenciesAllowSatisfy(DatabaseBean db,
       throw cciiEx;
     }
 
-    if ( agency == null ) 
+    if ( agency == null )
     {
       s.getScan().setErrorNumber(Messages.EM_DB_ERROR);
       CCIILogException cciiEx = new CCIILogException("BA_FETCH_ERROR_NUMB",

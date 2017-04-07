@@ -12,7 +12,7 @@ import java.text.DateFormat;
  * Description:  Class that extends BusinessActionBase.  Used for the
  *               validation and update of the sort_dt field in the Route_Leg
  *               database table.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Joey Cline
  * @version      1.0
@@ -20,7 +20,7 @@ import java.text.DateFormat;
  * Modification History:
  *  08/20/03    Joey Cline     Initial version.
  */
- 
+
 public class RouteLegSortDateChange extends RouteLegChangeBase
 {
     private static final String m_whatVersion = "@(#) $RCSfile: RouteLegSortDateChange.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
@@ -34,7 +34,7 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
     public RouteLegSortDateChange() throws Exception
     {
     }
-     
+
 /**
  * Method:       setDbFields(RouteLeg dbRLeg, RouteLeg changeRLeg)
  * Description:  Copies the RouteLegInfo from changeRLeg to dbRLeg.
@@ -49,7 +49,7 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
     {
         dbRLeg.setSortDate(changeRLeg.getSortDate());
     }
-    
+
 /**
  * Method:       isValidRouteLegChange(RouteLeg databaseRLeg, RouteLeg newRLeg)
  * Description:  Validates the change of route leg sort date from the existing value
@@ -62,7 +62,7 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
  * @return       int - 0 for valid change or an error number
  */
     protected int isValidRouteLegChange(RouteLeg databaseRLeg, RouteLeg newRLeg)
-    {    
+    {
         traceLog ( "RouteLegSortDateChange", "New Route Leg: " + newRLeg );
         traceLog ( "RouteLegSortDateChange", "Sort date in ms: " + newRLeg.getSortDate().getTime() );
         if ( ( newRLeg.getSortDate().getTime() % MILLISECONDS_IN_DAY ) != 0 )
@@ -78,7 +78,7 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
 
         return Messages.EM_NO_ERROR;
     }
-    
+
 /**
  * Method:       addClearanceActivity(CCIIState state, RouteLeg dbRLeg)
  * Description:  Adds an Activity, appropriate to the route leg status change, to the
@@ -118,9 +118,9 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        System.out.println("Leaving RouteLegSortDateChange main");       
+        System.out.println("Leaving RouteLegSortDateChange main");
     }
-    
+
 /**
  * Method:       test()
  * Description:  Test method used only for testing of businessAction.
@@ -129,12 +129,12 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
  * @return       void
  */
     public void test()
-    {        
+    {
         System.out.println("RouteLegSortDateChange in test");
 
         GregorianCalendar now = new GregorianCalendar();
         Date dateTime = now.getTime();
-        
+
         now.set(Calendar.HOUR_OF_DAY,0);
         now.set(Calendar.MINUTE,0);
         now.set(Calendar.SECOND,0);
@@ -142,18 +142,18 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
         Date date = now.getTime();
         now.add(Calendar.DAY_OF_MONTH,1);
         Date datePlusOne = now.getTime();
-        
+
         DatabaseBean db = new DatabaseBean();
         db.connect();
-        
+
         RouteLeg dbRLeg = new RouteLeg("JC123", date, 10, "023", "DESTN", "ORIGN",
                                        dateTime, dateTime, dateTime, dateTime, "DC",
                                        "OC", date, "N", "N", "N", -222);
-        
+
         RouteLeg chgRLeg = new RouteLeg("JC123", date, 10, "023", "DESTN", "ORIGN",
                                        dateTime, dateTime, dateTime, dateTime, "DC",
                                        "OC", datePlusOne, null, null, null, -222);
-                                     
+
         CCIIState state = new CCIIState();
 
         // write a RouteLeg
@@ -168,14 +168,14 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
             ex.printStackTrace();
         }
 
-        
+
         // change to valid new date; do not expect error
         System.out.println("=========================================================");
         System.out.println("Beginning Test1: Sort date + 1 day - VALID CHANGE");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         System.out.println("Adjusted Route Leg: " + chgRLeg);
         state.setRouteLegInfo(chgRLeg);
-        
+
         try
         {
             state = this.doIt(state, db);
@@ -185,7 +185,7 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test1 passed");
@@ -195,7 +195,7 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
             System.out.println("Test1 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
         System.out.println("Activity list = " + state.m_activityCodes.toString());
-        
+
         // change to invalid new date; expect error
         System.out.println("=========================================================");
         state = new CCIIState();
@@ -206,7 +206,7 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         System.out.println("Adjusted Route Leg: " + chgRLeg);
         state.setRouteLegInfo(chgRLeg);
-        
+
         try
         {
             state = this.doIt(state, db);
@@ -216,7 +216,7 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test2 passed; therefore this IS AN ERROR");
@@ -227,8 +227,8 @@ public class RouteLegSortDateChange extends RouteLegChangeBase
             System.out.println("ErrorNumber = " + state.getScan().getErrorNumber());
         }
         System.out.println("Activity list = " + state.m_activityCodes.toString());
-        
+
         System.out.println("=========================================================");
         System.out.println("RouteLegSortDateChange test complete");
     }
-}    
+}

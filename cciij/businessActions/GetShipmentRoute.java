@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:         Get Routing
  * Description:   Stubb to be implimented in the future.
- * Copyright:     Copyright (c) 2001
+ * Copyright:     Copyright (c) 2007
  * Company:       FedEx Services
  * @author        Robert Fisher
  * @version 1.0
@@ -25,10 +25,10 @@ import cciij.cciidata.*;
 import cciij.util.CCIILogException;
 
 
-public class GetShipmentRoute extends BusinessActionBase 
+public class GetShipmentRoute extends BusinessActionBase
 {
   private static final String m_whatVersion = "@(#) $RCSfile: GetShipmentRoute.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
-  public GetShipmentRoute() throws Exception 
+  public GetShipmentRoute() throws Exception
   {
   }
 
@@ -38,15 +38,15 @@ public class GetShipmentRoute extends BusinessActionBase
     // no local variables to read in
   }
 
-  public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception 
+  public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception
   {
 
     RouteLeg routeLeg;
     try
     {
-        state.setRouteLegInfo(dbConnection.fetchRouteLeg(state.getScan().getLocationCode(), 
+        state.setRouteLegInfo(dbConnection.fetchRouteLeg(state.getScan().getLocationCode(),
                                                          state.getScan().getShipmentOid()));
-//        routeLeg = dbConnection.fetchRouteLeg(state.getScan().getLocationCode(), 
+//        routeLeg = dbConnection.fetchRouteLeg(state.getScan().getLocationCode(),
 // 					     state.getScan().getShipmentOid());
 //        state.getRouteLegInfo().setRouteNumber(routeLeg.getRouteNumber());
 //        state.getRouteLegInfo().setRouteDate(routeLeg.getRouteDate());
@@ -56,7 +56,7 @@ public class GetShipmentRoute extends BusinessActionBase
     {
         state.getScan().setErrorNumber(Messages.EM_DB_ERROR);
         CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB",
-             "Failure during fetch of PieceRouteLeg data",ex); 
+             "Failure during fetch of PieceRouteLeg data",ex);
         throw cciiEx;
     }
 
@@ -76,12 +76,12 @@ public class GetShipmentRoute extends BusinessActionBase
         getShipmentRoute.test();
      }
      catch (Exception e)
-     { 
+     {
          System.out.println(e);
          e.printStackTrace(System.out);
      }
   }
-     
+
   public void test() throws Exception
   {
      rmtc.util.Config cfg = new rmtc.util.Config();

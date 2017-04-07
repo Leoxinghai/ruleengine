@@ -10,9 +10,9 @@ package cciij.businessActions;
  *              - the last modified date timestamp
  *              - the last user name
  *
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:     FedEx Services
- * @author      Mike Roderick
+ * @author     Liu Xinghai
  * @version 1.0
  *
  * @throws      cciij.util.CCIILogException Failure during fetch of HandlingUnit
@@ -27,7 +27,7 @@ package cciij.businessActions;
  * @param       dbConnection - valid database connection from connection pool.
  *
  * Modification History:
- * 02/14/2002 Mike Roderick Created from PostHandlingUnit.java
+ * 02/14/2002Liu Xinghai Created from PostHandlingUnit.java
  */
 
 import cciij.cciidatabase.*;

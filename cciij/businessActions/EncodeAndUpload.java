@@ -14,7 +14,7 @@ import cciicosmos.cosmosasn.*;
 /**
  * Title:       Encode And Upload
  * Description:
- * Copyright:   Copyright (c) 2001
+ * Copyright:   Copyright (c) 2007
  * Company:
  * @author      Robert Fisher
  *  NOTE:
@@ -49,15 +49,15 @@ import cciicosmos.cosmosasn.*;
  *   10/02/2002  Gary Rockwood Added the CONS and DCON codeing for CorpScan upload
  *
  *   03/04/2003  Gary Rockwood Modified for ASN1 and ECCO in java
- *                             Changes to 'Scan_Def' table    
+ *                             Changes to 'Scan_Def' table
  *                             New database table called 'Upload_Def'
  *
  *   11/14/2003  Joey Cline    Modified the MQQueue object to be a property
  *                             instead of being a local variable, so that
  *                             the connection manager is not created/destroyed
- *                             with each call.                                 
- *                             Migrated property initialization into the       
- *                             initialize method, since creation of the 
+ *                             with each call.
+ *                             Migrated property initialization into the
+ *                             initialize method, since creation of the
  *                             MQQueue object is dependent on it.
  *
  *   03/08/2003  K. Smathers   Split functionality into the following classes:
@@ -74,25 +74,25 @@ import cciicosmos.cosmosasn.*;
  *   12/02/2005  G. Rockwood   Created the only if there are no db errors
  *                             Added some System.out.println to discover what is happening
  *                             Moved private variables into the associated method
- * 
+ *
  *   12/16/2005  J. McCarthy   Removed dbb.setDatabaseSchemaName();
  * @version 1.0
  */
 
-public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration 
+public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
 {
   private  TreeMap m_uploadCategoryDefTree = null;
 
 
   private static final String m_whatVersion = "@(#) $RCSfile: EncodeAndUpload.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
 
-  public EncodeAndUpload() throws Exception 
+  public EncodeAndUpload() throws Exception
   {
   }
 
   protected void initialize() throws Exception
   {
-    super.initialize(); 
+    super.initialize();
   }
 
   protected void readSiteConfigVariables() throws Exception
@@ -100,7 +100,7 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
     super.readSiteConfigVariables();
   }
 
-  public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception 
+  public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Exception
   {
     CCIIState m_state = null;
     DatabaseBean m_dbConnection = null;
@@ -119,13 +119,13 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
     Vector vecUploadKeys = new Vector();
     vecUploadKeys.addElement(uploadKey);
     state.setUploadKey(vecUploadKeys);
-    
+
     if (m_uploadCategoryDefTree == null)
-    { 
+    {
       // Create a temporary TreeMap being used while the build is being done
-      // Transfer to m_uploadCategoryDefTree only after successful completion  
+      // Transfer to m_uploadCategoryDefTree only after successful completion
   	  TreeMap tempTreeMap = new TreeMap();
- 
+
       try
       {
         m_uploadCategoryDef = m_dbConnection.fetchUploadCategoryDef();
@@ -151,7 +151,7 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
         // Read the next Record from Upload Definition
         try
         {
-          m_uploadCategoryDef = 
+          m_uploadCategoryDef =
                      m_dbConnection.fetchNextUploadCategoryDef();
         }
         catch (Exception ex)
@@ -162,12 +162,12 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
           throw cciiEx;
         }
       }
-      // If we got here there were no errors or exceptions 
+      // If we got here there were no errors or exceptions
       m_uploadCategoryDefTree = tempTreeMap;
     }
 
     try
-    { 
+    {
       traceLog("EncodeAndUpload", "m_state.getUploadKey().size() " + m_state.getUploadKey().size() );
       if (m_state.getUploadKey().size() > 0)
       {
@@ -188,7 +188,7 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
     {
       if (m_upload == null)
       {
-        System.out.println("EncodeAndUpload, no upload for scan type " + m_state.getScanTypeCode() + 
+        System.out.println("EncodeAndUpload, no upload for scan type " + m_state.getScanTypeCode() +
                            " with key >" + m_state.getUploadKey() + "<");
       }
     }
@@ -197,22 +197,22 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
       System.out.println("EncodeAndUpload, no upload for scan type " + m_state.getScanTypeCode() +
                          " No key specified");
     }
-    
+
     Vector uObjects = new Vector();
 
     while (m_upload != null)
     {
-//      System.out.println("EncodeAndUpload, upload " + m_state.getUploadKey() + " " + 
+//      System.out.println("EncodeAndUpload, upload " + m_state.getUploadKey() + " " +
 //                                                      m_upload.getUploadSeqNumber() + " " +
 //                                                      m_upload.getUploadCategoryCode() + " " +
-//                                                      m_upload.getUploadCode() + " " + 
-//                                                      m_upload.getClassIdCode() + ":" + 
+//                                                      m_upload.getUploadCode() + " " +
+//                                                      m_upload.getClassIdCode() + ":" +
 //                                                      m_upload.getFieldIdCode());
       traceLog("EncodeAndUpload", "Adding to the Vector: " + m_upload );
       uObjects.add ( m_upload );
       try
       {
-        // Read the next Record from Upload 
+        // Read the next Record from Upload
         m_upload= m_dbConnection.fetchNextUpload();
       }
       catch (Exception ex)
@@ -222,7 +222,7 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
         ex.printStackTrace ( System.err );
         throw cciiEx;
       }
-    }     // end of while     
+    }     // end of while
 
     Enumeration uEnum = uObjects.elements();
 
@@ -233,11 +233,11 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
 
       Boolean  getCondition;
 
-      System.out.println("EncodeAndUpload, looking for " + m_upload.getClassIdCode() + 
-                         ":" + m_upload.getFieldIdCode() + " Scan " + m_upload.getUploadCode()); 
-      traceLog("EncodeAndUpload", "Testing for Upload Definition, class :" 
-               + m_upload.getClassIdCode() + ":, field :" 
-               + m_upload.getFieldIdCode() + " scan " 
+      System.out.println("EncodeAndUpload, looking for " + m_upload.getClassIdCode() +
+                         ":" + m_upload.getFieldIdCode() + " Scan " + m_upload.getUploadCode());
+      traceLog("EncodeAndUpload", "Testing for Upload Definition, class :"
+               + m_upload.getClassIdCode() + ":, field :"
+               + m_upload.getFieldIdCode() + " scan "
                + m_upload.getUploadCode());
 
       getCondition = (Boolean)m_state.get(m_upload.getClassIdCode(), m_upload.getFieldIdCode());
@@ -248,16 +248,16 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
                            m_upload.getUploadCategoryCode();
         if(m_uploadCategoryDefTree.containsKey(key) == true)
         {
-          m_uploadCategoryDef = 
+          m_uploadCategoryDef =
                  (UploadCategoryDef)m_uploadCategoryDefTree.get(key);
           System.out.println("EncodeAndUpload, Scan className " + m_uploadCategoryDef.getClassName());
-          Class l_class = 
-                 Class.forName(m_uploadCategoryDef.getClassName()); 
-          PostMessageInterface message = 
+          Class l_class =
+                 Class.forName(m_uploadCategoryDef.getClassName());
+          PostMessageInterface message =
                  (PostMessageInterface) l_class.newInstance();
           m_scan = createScan(m_state, m_upload);
           state.setCurrentScan(m_scan);
-          // createMessage may change the the scanTypeCode or 
+          // createMessage may change the the scanTypeCode or
           // locStatNbr in the scan object
           message.initialize(m_uploadCategoryDef, "COSMOS", "Output");
           message.createMessage( m_state, m_dbConnection,
@@ -272,10 +272,10 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
       else
       {
         System.out.println("EncodeAndUpload, upload set to false");
-        traceLog("EncodeAndUpload", "Upload not set to true" ); 
+        traceLog("EncodeAndUpload", "Upload not set to true" );
       }
- 
-    }     // end of while     
+
+    }     // end of while
 
     m_state.setUploadFlag("C");
 
@@ -295,7 +295,7 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
                m_state.getScan().getShipmentOid(), //ShipmentOid
                new Date(m_state.getScan().getSysDateTime()), //DateTime
                m_state.getScan().getUserLogon(), //User
-               m_upload.getUploadCode(), 
+               m_upload.getUploadCode(),
                "00", //locStatNbr
                m_state.getScan().getStagingAreaCode(), //StagingAreaCode
                "", //StagingAreaFlag
@@ -304,28 +304,28 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
                m_state.getScan().getLocationCode(),//locationcd
                m_state.getScan().getWarehouseCode(),//warehouseCd
                m_state.getScan().getInputMethodCode(),  //inputMethodCd
-               m_upload.getUploadTemplateDescription()); 
-  
-    try                                                                       
-    {                                                                         
-      scan.setScanOidNumber(getOid(OidFactoryTypes.SCAN));                    
-    }                                                                         
-    catch (Exception ex)                                                      
-    {                                                                         
+               m_upload.getUploadTemplateDescription());
+
+    try
+    {
+      scan.setScanOidNumber(getOid(OidFactoryTypes.SCAN));
+    }
+    catch (Exception ex)
+    {
       m_state.getScan().setErrorNumber(Messages.EM_JOLT_APP_ERROR);
       String msg = "Failure during Jolt service call to get Scan Oid Number " + ex + "(See System.err for initial stack trace)";
       traceLog("PostScan", msg);
       System.err.println(msg);
-      ex.printStackTrace(System.err); 
-      CCIILogException cciiEx = 
+      ex.printStackTrace(System.err);
+      CCIILogException cciiEx =
            new CCIILogException("BA_JOLT_ERROR_NUMB", msg );
       throw cciiEx;
-    }                                                                         
-    scan.setScanLocationDescription(m_state.getScan().getDetainLoc());          
-    // This field is set in the 'UnrollCons.java" routine 
-    if (m_state.getScan().getFromConsFlag().equals("Y")) 
+    }
+    scan.setScanLocationDescription(m_state.getScan().getDetainLoc());
+    // This field is set in the 'UnrollCons.java" routine
+    if (m_state.getScan().getFromConsFlag().equals("Y"))
     {
-      scan.setFromConsFlag("Y");   
+      scan.setFromConsFlag("Y");
     }
     return scan;
   }
@@ -341,9 +341,9 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
     catch (Exception ex)
     {
       System.out.println(ex);
-    } 
-  } 
-   
+    }
+  }
+
   public void  test() throws Exception
   {
     traceLog("EncodeAndUpload","In test method");
@@ -383,7 +383,7 @@ public class EncodeAndUpload extends BusinessActionBaseWithOidGeneration
     scan.setShipmentOid(12345);
     scan.setHandlingUnitOid(12345);
     scan.setUserLogon("92163");
-    scan.setLocStatNbr("22"); 
+    scan.setLocStatNbr("22");
     scan.setStagingAreaCode("EEC");
     scan.setLocationCode("NRT");
     scan.setWarehouseCode("IWJ");

@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:       Find Intercept
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:     FedEx Services
  * @author      Robert Fisher
  * @version 1.0
@@ -113,7 +113,7 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
 			state.getScan().getAirbillFormType().equals("0491") || state.getScan().getAirbillFormType().equals("491") ) {
 		state.setMPSFlag("CRN");
 	}
-		
+
    traceLog("FindIntercept","Found an Intercept, collecting print & routing data");
 
    interceptVector = loadInterceptVector(intercept,dbConnection,state);
@@ -138,7 +138,7 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
     state = getInterceptPrintData(interceptVector, dbConnection, state);
 
    if ( state.getScan().getErrorNumber() != Messages.IM_MPS
-        && ( state.getScan().getErrorNumber() != Messages.IM_OVERAGE 
+        && ( state.getScan().getErrorNumber() != Messages.IM_OVERAGE
 	  || state.getIsManifested() == true ) ) {
        state.getScan().setReturnMessage("  " + state.getStagingArea() + " INTRCPT ");
        state.getScan().setErrorNumber(Messages.IM_DISPLAY_RTN_MSG);
@@ -149,7 +149,7 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
 
     if(!state.getScan().getInterceptCode().equals(""))
         intercept.setInterceptCode(state.getScan().getInterceptCode());
-    
+
     if((intercept.getInterceptCode().equals("INS") || intercept.getInterceptCode().equals("FO")) && (state.getMPSFlag().equals("CRN"))) {
  	   state.setInterceptedFlag("N");
  	   state.getScan().setInterceptCode("");
@@ -157,7 +157,7 @@ public CCIIState doIt(CCIIState state, DatabaseBean dbConnection) throws Excepti
  	   state.setInterceptedFlag("Y");
  	   state.getScan().setInterceptCode(intercept.getInterceptCode());
  	   state.getScan().setAgencyCode(intercept.getAgencyCode());
-    	}   
+    	}
 
     return state;
 }
@@ -246,7 +246,7 @@ protected void getStageAreaForIntercept(String warehouseCode,
       try {
         state.setStagingArea( getInterceptStagingArea(warehouseCode, interceptCode, state, db) );
       }
-      catch (Exception ex) 
+      catch (Exception ex)
       {
         CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB",
                                                    "Failure trying to set staging area via interceptCd." +
@@ -293,25 +293,25 @@ StagingArea stagingArea = null;
 
     protected CCIIState getRawInterceptPrintData(Vector interceptVector,
 					    DatabaseBean db,
-					    CCIIState state) throws Exception 
+					    CCIIState state) throws Exception
     {
 	Intercept intercept;
 
 	// Loop thru the intercepts and build a map for label printing
-	
+
 	traceLog("FindIntercept","Begin getRawInterceptPrintData");
 
 	int curIntercept=1;
 	String interceptCodes = "";
 
-	for (  Iterator i = interceptVector.iterator() ; i.hasNext(); ) 
+	for (  Iterator i = interceptVector.iterator() ; i.hasNext(); )
 	{
 	    intercept = (Intercept) i.next();
 	    traceLog("FindIntercept","iterating " + curIntercept);
 	    traceLog("FindIntercept",intercept);
-    
 
-	    
+
+
 	    //	    state.m_printData.put("Agency" + mapText[agencyCount] + "Intercept" + mapText[interceptCount], currentIntercept);
         if((intercept.getInterceptCode().equals("INS") || intercept.getInterceptCode().equals("FO")) && (state.getMPSFlag().equals("CRN"))) {
             state.addPrintMapElement("PiorityIntercept" + curIntercept,"");
@@ -322,7 +322,7 @@ StagingArea stagingArea = null;
 		    curIntercept++;
         }
 	}
-	    
+
 	state.getScan().setInterceptCode(interceptCodes.trim());
 	return state;
     }

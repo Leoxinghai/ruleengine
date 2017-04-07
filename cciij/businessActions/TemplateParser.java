@@ -3,9 +3,9 @@ package cciij.businessActions;
 /**
  * Title:         TemplateParser.java
  * Description:   Function to build a String for the activityDesc field in clearance activity
- * Copyright:     Copyright (c) 2001
+ * Copyright:     Copyright (c) 2007
  * Company:       FedEx Services
- * @author        Mike Roderick
+ * @author       Liu Xinghai
  * @version 1.0
  *
  *
@@ -15,7 +15,7 @@ package cciij.businessActions;
  * Pre-conditions:
  *
  * Modification History:
- * 05/09/2002    Mike Roderick Created
+ * 05/09/2002   Liu Xinghai Created
  *
  */
 

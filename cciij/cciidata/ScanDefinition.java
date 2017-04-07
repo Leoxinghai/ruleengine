@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title:        RoleClasses
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author       Kathleen Krucoff
  * @version 1.0
@@ -169,7 +169,7 @@ public class ScanDefinition implements Serializable
     {
       return m_corporateScanCode;
     }
-  
+
     /**
      * getInterceptCorporateScanCode
      * @return String
@@ -325,7 +325,7 @@ public class ScanDefinition implements Serializable
     {
       return m_uploadLocStatCode;
     }
-    
+
     /**
      * getActivityCode
      * @return String
@@ -334,7 +334,7 @@ public class ScanDefinition implements Serializable
     {
       return m_activityCd;
     }
-    
+
     /**
     * setActivityLogTextDescription
     * @param String
@@ -397,7 +397,7 @@ public class ScanDefinition implements Serializable
         m_corporateScanCode = s;
       }
     }
-    
+
     /**
     * setInterceptCorporateScanCode
     * @param String

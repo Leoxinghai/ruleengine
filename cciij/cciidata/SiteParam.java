@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title:        RoleClasses
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx
  * @author Kathleen Krucoff
  * @version 1.1                                                           <BR>
@@ -27,7 +27,7 @@ public class SiteParam implements Serializable
   private String m_paramValue = "";
   private String m_paramDescription = "";
   private String m_groupName = "";
-  private int m_editLevelNbr; 
+  private int m_editLevelNbr;
 
   /**
    * SiteParam
@@ -51,7 +51,7 @@ public class SiteParam implements Serializable
                    String groupName)
   {
     this(locationCode, paramName, paramValue, paramDescription, groupName, 0);
-    
+
   }
   /**
    * SiteParam

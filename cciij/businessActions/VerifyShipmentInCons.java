@@ -8,7 +8,7 @@ package cciij.businessActions;
  *               airbill to be put into the CONS, then it will
  *               determine the Shipment Identification.
  *               Return the state object to the caller.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Gary Rockwood
  * @version 1.0
@@ -96,7 +96,7 @@ public class VerifyShipmentInCons extends BusinessActionBase
             if (cons.getOidTypeCode().equals("S"))
             {
 //                System.out.println("Oid in Cons is type 'S'");
-//                System.out.println("Compare ConsOid " + cons.getOidNumber() + 
+//                System.out.println("Compare ConsOid " + cons.getOidNumber() +
 //                                   " with ShipmentOid " + state.getScan().getShipmentOid());
                 // Check that the Shipment Oid is the same
                 if (cons.getOidNumber() != state.getScan().getShipmentOid())
@@ -125,11 +125,11 @@ public class VerifyShipmentInCons extends BusinessActionBase
                         CCIILogException cciiEx = new CCIILogException("BA_DB_ERROR_NUMB","Handling Unit fetch failed");
                         throw cciiEx;
                     }
-                    
+
                     // Check that an entry was found
                     if (piece != null)
                     {
-//                        System.out.println("Compare Piece ShipmentOid " + piece.getShipmentOidNumber() + 
+//                        System.out.println("Compare Piece ShipmentOid " + piece.getShipmentOidNumber() +
 //                                   " with ShipmentOid " + state.getScan().getShipmentOid());
 
                         // Check the ShipmentOidNumber against what is in the state object

@@ -3,7 +3,7 @@ package cciij.cciidata;
 /**
  * Title: FlightInfo Role Class
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:  Fedex Services
  * @author
  * @version 1.0
@@ -41,7 +41,7 @@ public class FlightInfo implements Serializable
      * @param tailNbr
      */
     public FlightInfo(String travelPlanNbr, Date scheduledDepartureDt,
-			String originLocationCd, String destLocationCd, 
+			String originLocationCd, String destLocationCd,
 			String originCountryCd, String destCountryCd,
 			Date scheduledArrivalDt, String tailNbr)
     {
@@ -214,7 +214,7 @@ public class FlightInfo implements Serializable
 	 {
 	    m_destCountryCd = "";
 	 }
-         else	
+         else
 	 {
 	    m_destCountryCd = s ;
 	 }
@@ -276,7 +276,7 @@ public class FlightInfo implements Serializable
 	String s = "";
 
 	s +=  "FlightInfo object -- " + "\n";
- 
+
 	s += "travelPlanNbr                 : " + m_travelPlanNbr+ "\n";
 	s += "scheduledDepartureDt          : " + m_scheduledDepartureDt+ "\n";
 	s += "originLocationCd              : " + m_originLocationCd+ "\n";

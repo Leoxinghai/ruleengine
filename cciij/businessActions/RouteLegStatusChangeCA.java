@@ -5,7 +5,7 @@ package cciij.businessActions;
  * Description:  Concrete class that extends RouteLegStatusChangeBase.  Used for the
  *               validation and update of the route_leg_status_cd field in the Route_Leg
  *               database table for CANADA.
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:      FedEx Services
  * @author       Tom Knobeloch
  * @version      1.0
@@ -16,16 +16,16 @@ package cciij.businessActions;
  *  07/17/03    Tom Knobeloch  Added additional edits in the isValidRouteStatusChange
  *                             method.
  *  08/21/03    Joey Cline     Renamed method isValidRouteLegChange (from isValidRouteStatusChange)
- *                             Changed to inherit from RouteLegChangeBase.                          
+ *                             Changed to inherit from RouteLegChangeBase.
  */
- 
+
 import cciij.cciidatabase.*;
 import cciij.cciidata.*;
 import cciij.util.*;
 import java.util.*;
 
 public class RouteLegStatusChangeCA extends RouteLegChangeBase
-{ 
+{
     private static final String m_whatVersion = "@(#) $RCSFile: RouteLegStatusChangeCA.java,v $ $Revision: 1.1 $ $Author: xinghai $ $Date: 2006/06/26 07:26:01 $\n";
     private boolean customsCompleteRequired = false;
     private boolean brokerCompleteRequired = false;
@@ -40,7 +40,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
         customsCompleteRequired = m_config.getBoolean("SITE_CUSTOMS_COMPLETE_REQUIRED");
         brokerCompleteRequired = m_config.getBoolean("SITE_BROKER_COMPLETE_REQUIRED");
     }
-     
+
 /**
  * Method:       setDbFields(RouteLeg dbRLeg, RouteLeg changeRLeg)
  * Description:  When not null, copies RouteLegStatusCd, RouteLegBrokerFinishFlg,
@@ -69,7 +69,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             dbRLeg.setCustomsCompleteFlag(changeRLeg.getCustomsCompleteFlag());
         }
     }
-     
+
 /**
  * Method:       isValidRouteLegChange(RouteLeg databaseRLeg, RouteLeg newRLeg)
  * Description:  Validates the change of route leg status from the existing value
@@ -82,7 +82,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
  * @return       int - 0 for valid change or an error number
  */
     protected int isValidRouteLegChange(RouteLeg databaseRLeg, RouteLeg newRLeg)
-    {    
+    {
         if (   newRLeg.getRouteLegStatusCd().equals("") != true
             && newRLeg.getRouteLegStatusCd().equals(databaseRLeg.getRouteLegStatusCd()) != true)
         {
@@ -96,15 +96,15 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
 
                 // Can't close route if broker or customs is required to complete the
                 // route before closure and they haven't.
-                
+
                 // if new route status value is closed
                 if (   (newRLeg.getRouteLegStatusCd().equals("Y") == true)
                     // and broker complete is required
-                    && (   (   brokerCompleteRequired 
+                    && (   (   brokerCompleteRequired
                             // and the new broker complete flag is not complete
                             && newRLeg.getBrokerCompleteFlag().equals("Y") != true)
-                        // or customs complete is required    
-                        || (   customsCompleteRequired 
+                        // or customs complete is required
+                        || (   customsCompleteRequired
                             // and the new customs complete flag is not complete
                             && newRLeg.getCustomsCompleteFlag().equals("Y") != true) )
                     )
@@ -134,7 +134,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
                 }
             }
         }
-        
+
         if (   newRLeg.getBrokerCompleteFlag().equals("") != true
             && newRLeg.getBrokerCompleteFlag().equals(databaseRLeg.getBrokerCompleteFlag()) != true)
         {
@@ -156,7 +156,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
                 }
             }
         }
-        
+
         if (   newRLeg.getCustomsCompleteFlag().equals("") != true
             && newRLeg.getCustomsCompleteFlag().equals(databaseRLeg.getCustomsCompleteFlag()) != true)
         {
@@ -178,10 +178,10 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
                 }
             }
         }
-        
+
         return Messages.EM_NO_ERROR;
     }
-    
+
 /**
  * Method:       addClearanceActivity(CCIIState state, RouteLeg dbRLeg)
  * Description:  Adds an Activity, appropriate to the route leg status change, to the
@@ -235,7 +235,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
                 }
             }
         }
-        
+
         if (state.getRouteLegInfo().getBrokerCompleteFlag().equals("") != true)
         {
             if (   (dbRLeg.getBrokerCompleteFlag().equals("N") == true)
@@ -252,7 +252,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
                 }
             }
         }
-        
+
         if (state.getRouteLegInfo().getCustomsCompleteFlag().equals("") != true)
         {
             if (   (dbRLeg.getCustomsCompleteFlag().equals("N") == true)
@@ -294,9 +294,9 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        System.out.println("Leaving RouteLegStatusChangeCA main");       
+        System.out.println("Leaving RouteLegStatusChangeCA main");
     }
-    
+
 /**
  * Method:       test()
  * Description:  Test method used only for testing of businessAction.
@@ -305,28 +305,28 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
  * @return       void
  */
     public void test()
-    {        
+    {
         System.out.println("RouteLegStatusChangeCA in test");
 
         GregorianCalendar now = new GregorianCalendar();
         Date dateTime = now.getTime();
-        
+
         now.set(Calendar.HOUR_OF_DAY,0);
         now.set(Calendar.MINUTE,0);
         now.set(Calendar.SECOND,0);
         Date date = now.getTime();
-        
+
         DatabaseBean db = new DatabaseBean();
         db.connect();
-        
+
         RouteLeg dbRLeg = new RouteLeg("TK123", date, 10, "023", "DESTN", "ORIGN",
                                        dateTime, dateTime, dateTime, dateTime, "DC",
                                        "OC", date, "N", "N", "N", -111);
-        
+
         RouteLeg chgRLeg = new RouteLeg("TK123", date, 10, "023", "DESTN", "ORIGN",
                                        dateTime, dateTime, dateTime, dateTime, "DC",
                                        "OC", date, null, null, null, -111);
-                                     
+
         CCIIState state = new CCIIState();
         state.setRouteLegInfo(chgRLeg);
 
@@ -343,13 +343,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             ex.printStackTrace();
         }
 
-        
+
         // change from N to X; expect error
         System.out.println("Beginning Test1: N to X - INVALID CHANGE");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setRouteLegStatusCd("X");
         state.setRouteLegInfo(chgRLeg);
-        
+
         try
         {
             state = this.doIt(state, db);
@@ -359,7 +359,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_INV_RTE_STAT_CHG)
         {
             System.out.println("Test1 passed");
@@ -369,14 +369,14 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
         {
             System.out.println("Test1 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
-        
-                
+
+
         // change from N to D; expect success; change back to N
         System.out.println("Beginning Test2: N to D");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setRouteLegStatusCd("D");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -386,7 +386,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test2 passed");
@@ -396,7 +396,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
         {
             System.out.println("Test2 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
-                
+
         System.out.println("Reset test RouteLegStatusCd: D to N");
         chgRLeg.setRouteLegStatusCd("N");
         try
@@ -409,14 +409,14 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             ex.printStackTrace();
         }
         System.out.println("Activity list = " + state.m_activityCodes.toString());
-        
-        
+
+
         // change from N to Y; expect success
         System.out.println("Beginning Test3: N to Y");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setRouteLegStatusCd("Y");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -426,7 +426,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test3 passed");
@@ -437,13 +437,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println("Test3 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
 
-                
+
         // change from Y to X; expect error
         System.out.println("Beginning Test4: Y to X - INVALID CHANGE");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setRouteLegStatusCd("X");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -453,7 +453,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_INV_RTE_STAT_CHG)
         {
             System.out.println("Test4 passed");
@@ -464,13 +464,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println("Test4 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
 
-                
+
         // change from Y to N; expect success; change back to Y
         System.out.println("Beginning Test5: Y to N");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setRouteLegStatusCd("N");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -480,7 +480,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test5 passed");
@@ -490,7 +490,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
         {
             System.out.println("Test5 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
-                
+
         System.out.println("Reset test RouteLegStatusCd: N to Y");
         chgRLeg.setRouteLegStatusCd("Y");
         try
@@ -504,13 +504,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
         }
         System.out.println("Activity list = " + state.m_activityCodes.toString());
 
-        
+
         // change from Y to D; expect success
         System.out.println("Beginning Test6: Y to D");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setRouteLegStatusCd("D");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -520,7 +520,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test6 passed");
@@ -531,13 +531,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println("Test6 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
 
-                
+
         // change from D to X; expect error
         System.out.println("Beginning Test7: D to X - INVALID CHANGE");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setRouteLegStatusCd("X");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -547,7 +547,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_INV_RTE_STAT_CHG)
         {
             System.out.println("Test7 passed");
@@ -558,13 +558,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println("Test7 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
 
-                
+
         // change from D to N; expect success
         System.out.println("Beginning Test8: D to N");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setRouteLegStatusCd("N");
-        state.setRouteLegInfo(chgRLeg);      
-          
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -574,7 +574,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test8 passed");
@@ -586,13 +586,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
         }
         chgRLeg.setRouteLegStatusCd(null);
 
-        
+
         // change from N to X; expect error
         System.out.println("Beginning Test9: BrokerCompleteFlag N to X - INVALID CHANGE");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setBrokerCompleteFlag("X");
         state.setRouteLegInfo(chgRLeg);
-        
+
         try
         {
             state = this.doIt(state, db);
@@ -602,7 +602,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_INV_BRKR_FIN_CHG)
         {
             System.out.println("Test9 passed");
@@ -612,14 +612,14 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
         {
             System.out.println("Test9 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
-        
-        
+
+
         // change from N to Y; expect success
         System.out.println("Beginning Test10: BrokerCompleteFlag N to Y");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setBrokerCompleteFlag("Y");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -629,7 +629,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test10 passed");
@@ -640,13 +640,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println("Test10 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
 
-                
+
         // change from Y to X; expect error
         System.out.println("Beginning Test11: BrokerCompleteFlag Y to X - INVALID CHANGE");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setBrokerCompleteFlag("X");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -656,7 +656,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_INV_BRKR_FIN_CHG)
         {
             System.out.println("Test11 passed");
@@ -667,13 +667,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println("Test11 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
 
-                
+
         // change from Y to N; expect success; change back to Y
         System.out.println("Beginning Test12: BrokerCompleteFlag Y to N");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setBrokerCompleteFlag("N");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -683,7 +683,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test12 passed");
@@ -695,13 +695,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
         }
         chgRLeg.setBrokerCompleteFlag(null);
 
-        
+
         // change from N to X; expect error
         System.out.println("Beginning Test13: CustomsCompleteFlag N to X - INVALID CHANGE");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setCustomsCompleteFlag("X");
         state.setRouteLegInfo(chgRLeg);
-        
+
         try
         {
             state = this.doIt(state, db);
@@ -711,7 +711,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_INV_CSTM_FIN_CHG)
         {
             System.out.println("Test13 passed");
@@ -721,14 +721,14 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
         {
             System.out.println("Test13 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
-        
-        
+
+
         // change from N to Y; expect success
         System.out.println("Beginning Test14: CustomsCompleteFlag N to Y");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setCustomsCompleteFlag("Y");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -738,7 +738,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test14 passed");
@@ -749,13 +749,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println("Test14 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
 
-                
+
         // change from Y to X; expect error
         System.out.println("Beginning Test15: CustomsCompleteFlag Y to X - INVALID CHANGE");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setCustomsCompleteFlag("X");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -765,7 +765,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_INV_CSTM_FIN_CHG)
         {
             System.out.println("Test15 passed");
@@ -776,13 +776,13 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println("Test15 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
 
-                
+
         // change from Y to N; expect success; change back to Y
         System.out.println("Beginning Test16: CustomsCompleteFlag Y to N");
         state.getScan().setErrorNumber(Messages.EM_NO_ERROR);
         chgRLeg.setCustomsCompleteFlag("N");
-        state.setRouteLegInfo(chgRLeg);      
-        
+        state.setRouteLegInfo(chgRLeg);
+
         try
         {
             state = this.doIt(state, db);
@@ -792,7 +792,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         if (state.getScan().getErrorNumber() == Messages.EM_NO_ERROR)
         {
             System.out.println("Test16 passed");
@@ -803,7 +803,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println("Test16 failed: ErrorNumber = " + state.getScan().getErrorNumber());
         }
 
-                
+
         // delete test RouteLeg
         try
         {
@@ -815,7 +815,7 @@ public class RouteLegStatusChangeCA extends RouteLegChangeBase
             System.out.println(ex);
             ex.printStackTrace();
         }
-        
+
         System.out.println("Leaving RouteLegStatusChangeCA test");
     }
-}    
+}

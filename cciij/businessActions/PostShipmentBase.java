@@ -3,7 +3,7 @@ package cciij.businessActions;
 /**
  * Title:
  * Description:
- * Copyright:    Copyright (c) 2001
+ * Copyright:    Copyright (c) 2007
  * Company:
  * @author
  * @version 1.0
@@ -95,7 +95,7 @@ public abstract class PostShipmentBase extends BusinessActionBase {
    * @param Timestamp transactionTmstp
    * @param String dbTransactionTimestamp
    */
-    protected boolean isNewTransaction(Date transactionTimestamp, 
+    protected boolean isNewTransaction(Date transactionTimestamp,
                                        Timestamp dbTimestamp) throws Exception
     {
         if ( dbTimestamp == null ) // if the db timestamp is empty, assume it is new
